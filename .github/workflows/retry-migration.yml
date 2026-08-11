@@ -1,0 +1,43 @@
+name: Retry Faculty Guide migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/retry-migration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate and restore Faculty Guide files
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .migration/part-* > /tmp/faculty-guide.b64
+          actual_bytes=$(wc -c < /tmp/faculty-guide.b64)
+          expected_bytes=131776
+          echo "Staged Base64 bytes: ${actual_bytes}"
+          test "${actual_bytes}" -eq "${expected_bytes}"
+
+          base64 --decode /tmp/faculty-guide.b64 > /tmp/faculty-guide.zip
+          unzip -t /tmp/faculty-guide.zip
+          unzip -o /tmp/faculty-guide.zip -d .
+
+          rm -rf .migration
+          rm -f .github/workflows/complete-migration.yml
+          rm -f .github/workflows/retry-migration.yml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Migrate complete ENG 1010 Faculty Guide"
+          git push
