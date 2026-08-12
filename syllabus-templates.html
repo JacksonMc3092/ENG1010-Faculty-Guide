@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Syllabus Templates - ENG 1010 Faculty Guide</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333333;
+            background: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        header {
+            background: linear-gradient(135deg, #2D3185 0%, #1a1f4d 100%);
+            color: white;
+            padding: 60px 60px 50px 60px;
+            border-bottom: 4px solid #FFCC00;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 171, 154, 0.1) 0%, rgba(255, 204, 0, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0057B8 0%, #003d82 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: 700;
+            color: white;
+        }
+
+        .header-content {
+            max-width: 900px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: #FFCC00;
+            margin-top: 12px;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.25em;
+            color: white;
+            font-weight: 300;
+        }
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .content {
+            padding: 60px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #2D3185;
+            margin: 50px 0 20px 0;
+            font-weight: 300;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #FFCC00 0%, #00AB9A 100%);
+            border-image-slice: 1;
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 60px;
+            height: 3px;
+            background: #FFCC00;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            color: #2D3185;
+            margin: 35px 0 15px 0;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #333333;
+        }
+
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-left: 5px solid #FFCC00;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-left: 5px solid #FFCC00;
+            padding: 40px;
+            margin: 35px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .welcome-box p {
+            margin-bottom: 16px;
+        }
+
+        .signature {
+            margin-top: 28px;
+            font-style: italic;
+            color: #666666;
+            border-top: 1px solid rgba(255, 204, 0, 0.3);
+            padding-top: 24px;
+        }
+
+        .info-box {
+            background: rgba(232, 245, 243, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-left: 5px solid #00AB9A;
+            border: 1px solid rgba(0, 171, 154, 0.2);
+            border-left: 5px solid #00AB9A;
+            padding: 28px;
+            margin: 28px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 16px rgba(0, 171, 154, 0.1);
+        }
+
+        .info-box strong {
+            color: #2D3185;
+            font-weight: 600;
+        }
+
+        .checklist {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            padding: 40px;
+            margin: 35px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .checklist h3 {
+            margin-top: 0;
+            color: #2D3185;
+            border-bottom: 3px solid #FFCC00;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .checklist ol {
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .checklist li {
+            padding: 14px 0;
+            font-size: 1.05em;
+            line-height: 1.7;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: #333333;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist a {
+            color: #00AB9A;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .checklist a:hover {
+            border-bottom: 1px solid #FFCC00;
+            color: #2D3185;
+        }
+
+        .contact-box {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 171, 154, 0.2);
+            border-left: 5px solid #00AB9A;
+            padding: 32px;
+            margin: 28px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 16px rgba(0, 171, 154, 0.08);
+        }
+
+        .contact-box h4 {
+            color: #2D3185;
+            margin-bottom: 16px;
+            font-weight: 400;
+            font-size: 1.4em;
+        }
+
+        .contact-box h4::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: #FFCC00;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+        .contact-box a {
+            color: #00AB9A;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .contact-box a:hover {
+            border-bottom: 1px solid #FFCC00;
+            color: #2D3185;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 28px 0;
+        }
+
+        .next-steps-list li {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 18px 24px;
+            margin: 14px 0;
+            border-left: 4px solid #00AB9A;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .next-steps-list li:hover {
+            background: rgba(255, 204, 0, 0.1);
+            border-left: 6px solid #FFCC00;
+            box-shadow: 0 4px 16px rgba(255, 204, 0, 0.2);
+            transform: translateX(4px);
+        }
+
+        .next-steps-list a {
+            color: #2D3185;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .next-steps-list a:hover {
+            color: #00AB9A;
+        }
+
+        footer {
+            background: #2D3185;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-top: 4px solid #00AB9A;
+        }
+
+        footer p {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: white;
+        }
+
+        footer p:first-child {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+            .content {
+                padding: 30px;
+            }
+
+            header {
+                padding: 40px 30px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .logo-placeholder {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6em;
+            }
+
+            h1 {
+                font-size: 2.4em;
+            }
+
+            h1::after {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .subtitle {
+            font-size: 1.25em;
+            color: white;
+            font-weight: 300;
+        }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            
+
+            .checklist, .welcome-box, .contact-box {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            .logo-placeholder {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4em;
+            }
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+
+            .content {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            
+        }
+    
+        /* Accessibility: keyboard skip link */
+        .skip-link { position: absolute; left: -9999px; top: 0; z-index: 10000; padding: 12px 16px; background: #ffffff; color: #1a1f4d; font-weight: 700; border: 3px solid #FFCC00; }
+        .skip-link:focus { left: 16px; top: 16px; }
+</style>
+</head>
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="container">
+<header>
+<div class="logo">
+<div class="logo-placeholder">CT</div>
+</div>
+<div class="header-content">
+<h1>SYLLABUS TEMPLATES</h1>
+<p class="subtitle">English 1010: Composition Faculty Guide</p>
+</div>
+</header>
+<nav aria-label="Main navigation" role="navigation">
+<div class="nav-container">
+<div class="nav-main">
+<a class="nav-home" href="index.html">🏠 Home</a>
+<div class="nav-section">
+<div class="nav-section-header">Getting Started</div>
+<div class="nav-section-links">
+<a href="getting-started.html">Getting Started</a>
+<a href="course-overview.html">Course Overview</a>
+<a href="corequisite-model.html">Corequisite Model</a>
+</div>
+</div>
+<div class="nav-section">
+<div class="nav-section-header">Planning &amp; Teaching</div>
+<div class="nav-section-links">
+<a href="module-guide.html">Module Guide</a>
+<a href="assignments.html">Assignments</a>
+<a href="instructional-strategies.html">Teaching Strategies</a>
+<a href="assessment.html">Assessment</a>
+</div>
+</div>
+<div class="nav-section">
+<div class="nav-section-header">Resources</div>
+<div class="nav-section-links">
+<a aria-current="page" class="active" href="syllabus-templates.html">Syllabus Templates</a>
+<a href="policies.html">Policies</a>
+<a href="ai-policy.html">AI Policy</a>
+<a href="faculty-support.html">Faculty Support</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class="content" id="main-content">
+<div class="intro-section">
+<h2>Syllabus Requirements</h2>
+<p>Your syllabus is the foundational document for your course—it sets expectations, clarifies policies, and serves as a contract between you and your students. CT State has specific required components that must be included in all syllabi. This page provides those requirements along with ENG 1010-specific guidance.</p>
+<p style="margin-top: 15px;"><strong>Important:</strong> All faculty members are required to provide their Program Coordinator or Academic Discipline Coordinator an electronic copy of their course syllabus for all sections within <strong>two weeks of the start of the semester</strong>.</p>
+</div>
+<div class="required-box">
+<strong>⚠️ CRITICAL:</strong> According to the official CT State syllabus template (Fall 2025), certain sections are <strong>mandatory and cannot be edited or removed</strong>. These include all college-wide policies, resources, and required statements. Faculty may customize course-specific sections (course description, assignments, schedule, etc.) but must retain all institutional policies.
+            </div>
+<!-- REQUIRED COMPONENTS -->
+<div class="section">
+<h2>📋 Required Syllabus Components</h2>
+<p>Every ENG 1010 syllabus must include the following components. The order may vary, but all elements must be present:</p>
+<div class="checklist-box">
+<h4>Part 1: Course Information (Customizable)</h4>
+<ul>
+<li>Course title, number, CRN, credits (ENG 1010: Composition, 3 credits)</li>
+<li>Semester and year</li>
+<li>Prerequisites (None for ENG 1010)</li>
+<li>Course days, times, and learning modality (LRON, ONLN, TRAD, etc.)</li>
+<li>Course delivery method (on-ground, TEAMS, Collaborate, etc.)</li>
+<li>Campus location and class location</li>
+<li>Link to Academic Calendar: <a href="https://ctstate.edu/academic-calendar" style="color: #667eea;">https://ctstate.edu/academic-calendar</a></li>
+</ul>
+</div>
+<div class="checklist-box">
+<h4>Part 2: Instructor Information (Customizable)</h4>
+<ul>
+<li>Name and professional credentials</li>
+<li>CT State email address (primary contact method)</li>
+<li>Office phone (not applicable to adjunct faculty; do not list personal numbers)</li>
+<li>Campus office location (optional for adjunct; adjunct offices available)</li>
+<li>Office hours (optional for adjunct faculty)</li>
+</ul>
+</div>
+<div class="alert-box">
+<strong>💡 Note on Student Email:</strong> Remind students that they have been given an official CT State student email address, which is the primary way they will receive communications from all professors and the college. Students must check their college email regularly. Access: <a href="https://my.ctstate.edu/" style="color: #856404;">https://my.ctstate.edu/</a>
+</div>
+<div class="checklist-box">
+<h4>Part 3: Course Content (Customizable)</h4>
+<ul>
+<li><strong>Course Description</strong> - Use the official catalog description from Course Overview page</li>
+<li><strong>Required Textbook/Materials</strong> - Graff, Birkenstein, Durst, and Panning Davies, <em>"They Say / I Say" with Readings</em>, 6th ed. (Norton, 2024) plus any supplemental readings</li>
+<li><strong>Student Learning Outcomes</strong> - MUST use the approved learning outcomes for ENG 1010 (see Course Overview page for complete list)</li>
+<li><strong>Instructional Methodology</strong> - Describe whether on-ground, online, or hybrid</li>
+<li><strong>Course Delivery</strong> - Specify platform(s): Blackboard, TEAMS, Collaborate, etc.</li>
+<li><strong>Evaluation &amp; Grading</strong> - Detailed grading criteria with weight assigned to each component</li>
+<li><strong>Course Outline/Readings</strong> - Calendar or schedule of activities, readings, and due dates</li>
+</ul>
+</div>
+<div class="checklist-box">
+<h4>Part 4: College Policies (REQUIRED - DO NOT EDIT)</h4>
+<ul>
+<li>Academic Engagement Policy</li>
+<li>Academic Integrity</li>
+<li>Withdrawal Policy and Deadlines</li>
+<li>Disability and Accessibility Services</li>
+<li>Library Resources</li>
+<li>Mental Health Resources</li>
+<li>Tutoring Resources</li>
+<li>Title IX</li>
+<li>Continuing Notice of Nondiscrimination</li>
+<li>Veterans Support</li>
+<li>DACA Students</li>
+<li>Blackboard policies</li>
+<li>Class Cancellations</li>
+<li>Incomplete grade policy</li>
+<li>Recorded Class Sessions</li>
+<li>Student Consent to Recording</li>
+<li>Smoke-Free Campus Policy</li>
+<li>Student &amp; Faculty Communication and Processes</li>
+</ul>
+</div>
+<div class="info-box">
+<strong>ℹ️ Two-Part Document Structure:</strong> The official CT State template is structured as a two-part document: (1) Course Syllabus (personalized to your course), and (2) Resources, Policies, and Procedures (standardized college-wide). The second part should be posted in Blackboard and can also be provided as a hard copy, though note that it contains many hyperlinks best accessed electronically.
+                </div>
+</div>
+<!-- REQUIRED POLICY STATEMENTS -->
+<div class="section">
+<h2>📜 Required Policy Statements (Exact Wording)</h2>
+<p>The following policy statements must appear <strong>exactly as written</strong> in all ENG 1010 syllabi. Do not edit these.</p>
+<div class="policy-box">
+<h4>1. Withdrawal Policy</h4>
+<div class="policy-text">
+                        Withdrawing from a course can affect students' academic progress as well as their financial aid. If a student is considering withdrawing, they should first talk to their instructors about their current progress and explore alternatives. If students are on financial aid, talk to that office to understand any consequences. If students decide to withdraw, they must submit a written withdrawal request to the Office of the Registrar by the appropriate deadline. Withdrawals can be made in person, by mail, or online through your student account at https://my.ctstate.edu/. NOTE: Students are responsible for completing appropriate withdrawal paperwork; instructors do not withdraw students from their classes.
+                    </div>
+<p style="margin-top: 10px;"><strong>Also include:</strong> Link to withdrawal deadlines at <a href="https://ctstate.edu/academic-calendar" style="color: #dc3545;">https://ctstate.edu/academic-calendar</a></p>
+</div>
+<div class="policy-box">
+<h4>2. Academic Integrity</h4>
+<div class="policy-text">
+                        Academic misconduct includes, but is not limited to, plagiarism and all forms of cheating. Students are expected to do their own work on assignments, laboratory exercises, quizzes, examinations, and any other academic work. Please see the CSCU Student Code of Conduct and the "Course Syllabus: Resources, Policies and Procedures" section of this document or posted in the course Blackboard shell for more information. Faculty can assign a grade of "F" to any student found guilty of academic misconduct. Such an "F" cannot be overridden by a student-initiated "W" (withdrawal from the specific class or withdrawal from all classes). If a student is found to have multiple infractions, a stronger penalty may be observed. Academic dishonesty can also result in other disciplinary sanctions as defined in the CSCU Student Code of Conduct.
+                    </div>
+</div>
+<div class="policy-box">
+<h4>3. Disability and Accessibility Services</h4>
+<div class="policy-text">
+                        Students who require accommodations, based on a documented disability (short-term, temporary, recurring, and/or permanent), are encouraged to contact the Office for Disability and Accessibility Services (ODAS) on their campus at the beginning of each semester. Students needing accommodations may begin the accommodation request process at any time by following instructions outlined at this link: https://www.ctstate.edu/ODAS. After completing the intake process (which includes, but is not limited to, providing documentation of disability and engaging in an intake appointment), accommodation letters will be disseminated to the instructor(s) at the student's request. Students are encouraged to speak directly with their instructor(s) to discuss approved accommodations and how each will be provided in their respective courses. Accommodations are never retroactive.
+                    </div>
+</div>
+<div class="policy-box">
+<h4>4. Academic Engagement Policy</h4>
+<div class="policy-text">
+                        CT State students are expected to actively engage in learning. Current CSCU policy requires that students who do NOT begin participation in each class by a certain date be dropped from the class(es) in which there is no evidence of active participation. Logging into Blackboard alone does not prove engagement. Changes in enrollment may impact financial aid eligibility. For more information see this link: 1.19 Policy on Grades, Notations, and Academic Engagement.pdf (ct.edu) and watch this Academic Engagement Video.
+                    </div>
+</div>
+<div class="policy-box">
+<h4>5. Absences and Attendance Guidelines</h4>
+<div class="policy-text">
+                        The Faculty expect that each student will exercise personal responsibility regarding class attendance. All students are expected to attend every class session of each course for which they are registered. Students are responsible for all that transpires in class whether or not they are in attendance, even if absences are the result of late registration or add/drop activity at the beginning of a term as permitted by college policy. The Faculty defines excessive absence or lateness as more than the equivalent of one week of class meetings during the semester. Distance Learning courses will use criteria established by the Instructor. When presence counts towards a class participation grade, excessive absence or lateness may, at the discretion of the instructor, lower a student's course grade. Instructors will maintain class participation records.
+                    </div>
+</div>
+<div class="alert-box">
+<strong>💡 Important Note:</strong> You <strong>cannot give a grade based solely on attendance</strong>, but you <strong>can</strong> include class participation, working in groups, discussion contributions, etc. in your grading criteria.
+                </div>
+</div>
+<!-- GRADING STANDARDS -->
+<div class="section">
+<h2>📊 CT State Grading Standards (Required)</h2>
+<p>All syllabi must include the official CT State grading scale and equivalency table. This was revised in Spring 2024 per the 23/24 catalog and Faculty Handbook.</p>
+<table class="grade-table">
+<thead>
+<tr>
+<th>Letter Grade</th>
+<th>Grade Scale</th>
+<th>GPA Equivalency</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>93-100</td>
+<td>4.0</td>
+<td>Distinguished achievement in all phases of the course or assignment</td>
+</tr>
+<tr>
+<td><strong>A-</strong></td>
+<td>90-92.99</td>
+<td>3.7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>B+</strong></td>
+<td>87-89.99</td>
+<td>3.3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>83-86.99</td>
+<td>3.0</td>
+<td>High level of achievement in some phases of the course or assignment</td>
+</tr>
+<tr>
+<td><strong>B-</strong></td>
+<td>80-82.99</td>
+<td>2.7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>C+</strong></td>
+<td>77-79.99</td>
+<td>2.3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>73-76.99</td>
+<td>2.0</td>
+<td>Basic understanding of the subject of the course or assignment</td>
+</tr>
+<tr>
+<td><strong>C-</strong></td>
+<td>70-72.99</td>
+<td>1.7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>D+</strong></td>
+<td>67-69.99</td>
+<td>1.3</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>D</strong></td>
+<td>63-66.99</td>
+<td>1.0</td>
+<td>Minimal performance in the course or on the assignment</td>
+</tr>
+<tr>
+<td><strong>D-</strong></td>
+<td>60-62.99</td>
+<td>0.7</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>&lt;60%</td>
+<td>0.0</td>
+<td>Failure</td>
+</tr>
+<tr>
+<td><strong>P</strong></td>
+<td>-</td>
+<td>-</td>
+<td>Pass grades do not count in GPA</td>
+</tr>
+</tbody>
+</table>
+<div class="info-box">
+<strong>ℹ️ Note to Students:</strong> Include this reminder: "Final grades and academic standing can be obtained from https://my.ctstate.edu/. Grades listed in a course's electronic gradebook (such as Blackboard Learn) are not necessarily the final, weighted grade assigned in the course."
+                </div>
+</div>
+<!-- ENG 1010 SPECIFIC GUIDANCE -->
+<div class="section">
+<h2>📝 ENG 1010-Specific Syllabus Guidance</h2>
+<h3>Official Course Description</h3>
+<div class="policy-text" style="background: white; border-left: 4px solid #667eea; padding: 20px;">
+<strong>ENG 1010: Composition (3 credits)</strong><br/><br/>
+                    This course introduces students to academic writing and critical reading. Students will develop strategies for drafting, revising, and editing essays that synthesize, evaluate, and document sources. Assignments focus on composing arguments about texts and issues, with emphasis on audience, purpose, and rhetorical context. Writing instruction includes attention to thesis development, evidence use, organization, and style. Students will produce at least 20 pages of polished prose across three major essays (3-5 pages, 5-6 pages, and 7-9 pages), including at least one research-based assignment.
+                </div>
+<h3>Student Learning Outcomes</h3>
+<p><strong>CRITICAL:</strong> All sections of ENG 1010 must list the same approved learning outcomes. Use the following four categories with their complete bullet points (see <a href="course-overview.html" style="color: #667eea;">Course Overview</a> for the full list):</p>
+<ol style="padding-left: 40px; margin: 15px 0;">
+<li><strong>Respond to Rhetorical Situations</strong> (4 outcomes)</li>
+<li><strong>Engage with and Use Authoritative Sources</strong> (6 outcomes)</li>
+<li><strong>Craft Logical Arguments</strong> (6 outcomes)</li>
+<li><strong>Apply Language Conventions</strong> (4 outcomes)</li>
+</ol>
+<h3>Required Text</h3>
+<div class="policy-text" style="background: white; border-left: 4px solid #667eea; padding: 20px;">
+                    Graff, Gerald, Cathy Birkenstein, Russel Durst, and Laura J. Panning Davies. <em>"They Say / I Say" with Readings</em>. 6th ed. W.W. Norton, 2024.<br/>
+                    ISBN: 978-1324070139
+                </div>
+<p style="margin-top: 10px;">You may also assign supplemental readings (articles, essays, etc.) through Blackboard or course packets. Be clear about how students will access these materials.</p>
+<h3>Sample Evaluation &amp; Grading Breakdown</h3>
+<p>Your syllabus must specify how final grades will be calculated. Here's a sample breakdown for ENG 1010:</p>
+<ul style="padding-left: 40px; margin: 15px 0;">
+<li><strong>Essay 1 (Close Reading &amp; Analysis, 3-5 pages):</strong> 20%</li>
+<li><strong>Essay 2 (Synthesis &amp; Argument, 5-6 pages):</strong> 25%</li>
+<li><strong>Essay 3 (Research-Based Argument, 7-9 pages):</strong> 30%</li>
+<li><strong>Low-Stakes Writing</strong> (discussion posts, quick writes, drafts): 15%</li>
+<li><strong>Participation &amp; Engagement:</strong> 10%</li>
+</ul>
+<p><strong>Note:</strong> Adjust percentages as needed, but ensure major essays total at least 20 pages and constitute the majority of the grade.</p>
+<h3>Course Schedule Considerations</h3>
+<p>Your syllabus should include a week-by-week schedule with:</p>
+<ul style="padding-left: 40px; margin: 15px 0;">
+<li>Readings due for each class session</li>
+<li>Major assignment due dates (drafts and final versions)</li>
+<li>Workshop days, peer review sessions, conferences</li>
+<li>Note: "This schedule may be modified at the discretion of the instructor to accommodate students' needs, and the instructor will notify the students when doing so, but students are responsible for being aware of any changes."</li>
+</ul>
+<div class="alert-box">
+<strong>💡 Course Calendar Formats:</strong> Your schedule will vary depending on course format:
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+<li><strong>15-week traditional:</strong> Standard full semester</li>
+<li><strong>12-week late start:</strong> Condensed version (adjust pacing)</li>
+<li><strong>Online/LRON:</strong> Include clear deadlines for asynchronous work; specify synchronous session times if applicable</li>
+</ul>
+</div>
+</div>
+<!-- ENG 0910 ADDENDUM -->
+<div class="section">
+<h2>🔗 ENG 1010/0910 Corequisite Sections</h2>
+<p>If you are teaching an ENG 1010 section paired with the ENG 0910 workshop, your syllabus should clarify the relationship between the two courses.</p>
+<h3>Additional Information for ENG 1010/0910 Syllabi</h3>
+<div class="checklist-box">
+<h4>Include This Language:</h4>
+<ul>
+<li><strong>Course Title:</strong> List as "ENG 1010: Composition" with a note: "This section includes ENG 0910: Composition Workshop (0 credits)"</li>
+<li><strong>Credit Hours:</strong> "3 credits (ENG 1010) + 0 credits (ENG 0910)"</li>
+<li><strong>Meeting Times:</strong> Specify both ENG 1010 and ENG 0910 meeting times (workshop meets an additional 2.5 hours/week)</li>
+<li><strong>Course Description:</strong> Add a paragraph explaining the workshop component</li>
+</ul>
+</div>
+<div class="policy-text" style="background: white; border-left: 4px solid #27ae60; padding: 20px; margin-top: 15px;">
+<strong>Sample ENG 0910 Description for Syllabus:</strong><br/><br/>
+                    "This section of ENG 1010 is paired with ENG 0910: Composition Workshop, which provides additional support for students developing their academic writing skills. The workshop meets for an additional 2.5 hours per week with the same instructor. In the workshop, you will receive hands-on guidance with drafting, revising, and editing your essays, along with targeted instruction in reading strategies, grammar, and research skills. The workshop has the same assignments as the stand-alone ENG 1010 course—you will not be given additional work, but you will receive more individualized support to help you succeed. An embedded professional tutor may also be present to provide additional assistance. Both ENG 1010 and ENG 0910 must be passed (with a grade of C or better in ENG 1010 and Pass in ENG 0910) to move forward in the English sequence."
+                </div>
+<div class="info-box">
+<strong>ℹ️ Grading Note:</strong> Remind students that ENG 0910 is graded Pass/No Pass based on engagement and effort, not quality of writing. Students receive a letter grade only for ENG 1010. See the <a href="corequisite-model.html" style="color: #0c5460;">Corequisite Model</a> page for grading scenarios.
+                </div>
+</div>
+<!-- ACCESSIBILITY -->
+<div class="section">
+<h2>♿ Accessibility &amp; Inclusive Design</h2>
+<p>Your syllabus should be accessible to all students, including those using screen readers or other assistive technologies.</p>
+<h3>Accessibility Checklist</h3>
+<div class="checklist-box">
+<ul>
+<li>Use headings hierarchically (H1, H2, H3) for screen readers</li>
+<li>Use sans-serif fonts (Arial, Calibri) at 11-12 point minimum</li>
+<li>Ensure sufficient color contrast (avoid light gray text on white backgrounds)</li>
+<li>Use descriptive hyperlinks ("Academic Calendar" vs. "Click here")</li>
+<li>Provide alt text for any images or graphics</li>
+<li>Use bulleted/numbered lists instead of dense paragraphs where appropriate</li>
+<li>Save as accessible PDF if distributing electronically</li>
+</ul>
+</div>
+</div>
+<!-- CHECKLIST -->
+<div class="section">
+<h2>✅ Final Syllabus Checklist</h2>
+<p>Before submitting your syllabus to your Program Coordinator/ADC, verify you have included:</p>
+<div class="checklist-box">
+<h4>Course Basics</h4>
+<ul>
+<li>Course number, title, CRN, credits, semester</li>
+<li>Meeting times, modality, delivery method, location</li>
+<li>Instructor contact information</li>
+<li>Link to Academic Calendar</li>
+</ul>
+</div>
+<div class="checklist-box">
+<h4>Course Content</h4>
+<ul>
+<li>Official course description (from catalog)</li>
+<li>Required textbook: <em>Rewriting</em> by Joseph Harris</li>
+<li>All approved student learning outcomes (4 categories)</li>
+<li>Detailed evaluation and grading breakdown</li>
+<li>Course schedule with readings and due dates</li>
+</ul>
+</div>
+<div class="checklist-box">
+<h4>Required Policies (Exact Wording)</h4>
+<ul>
+<li>Academic Engagement Policy</li>
+<li>Academic Integrity statement</li>
+<li>Withdrawal policy and deadlines</li>
+<li>Disability and Accessibility Services</li>
+<li>Absences and Attendance Guidelines</li>
+<li>CT State grading scale table</li>
+</ul>
+</div>
+<div class="checklist-box">
+<h4>Resources Document (Post in Blackboard)</h4>
+<ul>
+<li>All college-wide policies and resources</li>
+<li>Library, mental health, tutoring resources</li>
+<li>Title IX, nondiscrimination, DACA policies</li>
+<li>Blackboard, class cancellations, recording policies</li>
+</ul>
+</div>
+<div class="alert-box">
+<strong>💡 Submission Reminder:</strong> Submit your completed syllabus to your Program Coordinator or Academic Discipline Coordinator within <strong>two weeks of the start of the semester</strong>. Keep a copy for your records.
+                </div>
+</div>
+</div>
+<footer>
+<p><strong>CT State Community College | English 1010: Composition Faculty Guide</strong></p>
+<p>Questions? Contact Joseph Selvaggio, Curriculum Leader: joseph.selvaggio@ctstate.edu</p>
+<p style="margin-top: 10px; opacity: 0.8;">Scholar's Compass Project | Last Updated: November 2024</p>
+<p style="margin-top: 10px; opacity: 0.8;">Based on CT State Course Syllabus Template (Fall 2025)</p>
+</footer>
+</div>
+</body>
+</html>
