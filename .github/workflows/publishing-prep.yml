@@ -52,11 +52,12 @@ jobs:
             b78c8fc318b65fe29ef5eb1d617a93be495a88df420a63776a98dc728ca05f99
             a707a602c3c257bf5c3578f7ef4a457b51ef196a3154733d6c258ba53fb1e14f
           )
-
           : > /tmp/site.b64
           for i in $(seq -w 0 27); do
             if [ "$i" = "08" ]; then
               cat .publish/repair-008a .publish/repair-008b > "/tmp/part-${i}"
+            elif [ "$i" = "12" ]; then
+              cat .publish/repair-012a .publish/repair-012b > "/tmp/part-${i}"
             elif [ "$i" = "27" ]; then
               head -c 2064 ".publish/part-0${i}" > "/tmp/part-${i}"
             else
@@ -72,7 +73,6 @@ jobs:
             fi
             cat "/tmp/part-${i}" >> /tmp/site.b64
           done
-
           test "$(wc -c < /tmp/site.b64)" -eq 110064
           base64 --decode /tmp/site.b64 > /tmp/site.tar.gz
           echo "f50d18b4f8bf7d3cad340284de577656c31cbc0db835d0172f168f25d0d4cd27  /tmp/site.tar.gz" | sha256sum -c -
