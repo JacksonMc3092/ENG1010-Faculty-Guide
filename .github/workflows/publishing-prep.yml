@@ -1,0 +1,134 @@
+name: Build publishing-ready Faculty Guide
+
+on:
+  push:
+    branches: [agent/publishing-prep]
+    paths:
+      - '.github/workflows/publishing-prep.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prep:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate transport and restore site
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          expected_hashes=(
+            80908693daab06386c0998f3b5654a89584a465506b7c966c6f43d748cd6b36a
+            e76e1bf576e1a12954e694e61113bf230d4f14f9ef197a40d16022585408d1e2
+            11024b21889f28d6142add9e33a17c1cc242d192f21dc71db1a5d938e21ae39e
+            c878ae5bc9d6a872811087768b58a57076b7c23f646adbc6cececbaf9294e6bf
+            e7b42f8a925780dd53a985a05eaf7766a8f88c9bfb5ce3b16b26532e2c1036ea
+            0bf9d5edfaca97586cfc6c776d693f139b487e7d819faba697cc556ed61909e1
+            c33bbf37659999b87bc7da195c5979027f6065311b91bef57cd66b31118c5bef
+            b02eaf3af3217553891880b1c2a9205d76d857109167f8aff5bfa815014aec6d
+            3478335224ec466503a423528eb8f02f0ba62cf3fc2715864f8fc131cfe20968
+            04c56c01213e021501303659f1d98387caf93b43bdfd28844017971319158c37
+            e6f38927f965b0413e1d5cfb2522d5824f0c00b78a2df8b1961a7476dd3cc354
+            cc5ee27d7cced0b7e9c6e3e09a6e67ea252eff030631e41a58996b8bda79ff36
+            68acf347db96639ef968b189a155b3bb9462be99f274b5e5c885cc23b9505b29
+            533173ac8b8fa4018a7d833a3cd93eb5a48fc2641bad2ae991b4d58ddcab4d07
+            b6656185beab63747e0abc95cdd7c533cab5adef94de3fa71018a1a26750ec92
+            cd39d3cb959584d3efea720a35cc7eb3946932cba3f852fd7f35fced2ae52539
+            658c1f44f193d3afa8e945656cd71f4c0a2376601e381a8a172d28eecf3d5be8
+            9caf024b3bf9ff694beeb9c40678f71a60ff64156eb2e86e1007164fa1ddb835
+            c9cc845e5d17dca2ce82945e86233cf825907bd200dcd4e4f65905ee19df9e35
+            e8bf8efc3b0ab7585ad0c2668ebc6b1dffda87380451042d940c6cc329584418
+            3254fa7771fe15c8af11767cc94f7902936c96340bbe400fb80d6b345db264cc
+            485b9dc46543a080189b2cbfdc42228c3737c32e05a9f797602a17c89c16c436
+            faae4b7f03a108a43325764405aea71350bac8bbae487670f1227b7f9f10157c
+            9b0cbfaa9bb1ef9c420e807a07cfc131f1a74e70f461358678a6bdd187f2d8fc
+            df38b5dfa6ee432695c9b358c945e158f71020e4340a77c944514c4bbfab0fb7
+            ce81cc7c11840235528c14a79e87f33ba44acad85780c92462e9faba1093cc4d
+            b78c8fc318b65fe29ef5eb1d617a93be495a88df420a63776a98dc728ca05f99
+            a707a602c3c257bf5c3578f7ef4a457b51ef196a3154733d6c258ba53fb1e14f
+          )
+
+          : > /tmp/site.b64
+          for i in $(seq -w 0 27); do
+            f=".publish/part-0${i}"
+            if [ "$i" = "27" ]; then
+              bytes=2064
+            else
+              bytes=4000
+            fi
+            head -c "$bytes" "$f" > "/tmp/part-${i}"
+            actual=$(sha256sum "/tmp/part-${i}" | awk '{print $1}')
+            expected="${expected_hashes[$((10#$i))]}"
+            if [ "$actual" != "$expected" ]; then
+              echo "Chunk $i failed SHA-256 validation"
+              echo "expected: $expected"
+              echo "actual:   $actual"
+              exit 1
+            fi
+            cat "/tmp/part-${i}" >> /tmp/site.b64
+          done
+
+          test "$(wc -c < /tmp/site.b64)" -eq 110064
+          base64 --decode /tmp/site.b64 > /tmp/site.tar.gz
+          echo "f50d18b4f8bf7d3cad340284de577656c31cbc0db835d0172f168f25d0d4cd27  /tmp/site.tar.gz" | sha256sum -c -
+          tar -tzf /tmp/site.tar.gz
+          tar -xzf /tmp/site.tar.gz -C .
+
+      - name: Run publication checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          core=(index.html getting-started.html course-overview.html corequisite-model.html module-guide.html assignments.html instructional-strategies.html assessment.html syllabus-templates.html policies.html ai-policy.html faculty-support.html)
+          for f in "${core[@]}"; do
+            test -f "$f"
+            grep -q 'class="skip-link"' "$f"
+            grep -q 'id="main-content"' "$f"
+            ! grep -q '/cdn-cgi/l/email-protection' "$f"
+            ! grep -q 'embedded-tutors.html' "$f"
+            ! grep -q 'â' "$f"
+          done
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          core = [
+              'index.html','getting-started.html','course-overview.html','corequisite-model.html',
+              'module-guide.html','assignments.html','instructional-strategies.html','assessment.html',
+              'syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html'
+          ]
+          missing = []
+          for name in core:
+              text = Path(name).read_text(encoding='utf-8')
+              for href in re.findall(r'href=["\']([^"\']+)["\']', text, flags=re.I):
+                  clean = href.split('#', 1)[0].split('?', 1)[0]
+                  if not clean or '://' in clean or clean.startswith(('mailto:', 'tel:', '/')):
+                      continue
+                  if clean.endswith('.html') and not Path(clean).exists():
+                      missing.append((name, href))
+          if missing:
+              raise SystemExit('Missing local links: ' + repr(missing))
+          print('Local-link audit passed for all 12 pages.')
+          PY
+
+      - name: Commit clean publishing branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .publish .migration
+          rm -f .github/workflows/complete-migration.yml
+          rm -f .github/workflows/retry-migration.yml
+          rm -f .github/workflows/publishing-prep.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Prepare Faculty Guide for publishing"
+          git push
