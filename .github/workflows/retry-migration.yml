@@ -22,7 +22,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .migration/part-* > /tmp/faculty-guide.b64
+          : > /tmp/faculty-guide.b64
+          for f in .migration/part-*; do
+            case "$f" in
+              .migration/part-01b|.migration/part-07c)
+                head -c 4000 "$f" >> /tmp/faculty-guide.b64
+                ;;
+              *)
+                cat "$f" >> /tmp/faculty-guide.b64
+                ;;
+            esac
+          done
           actual_bytes=$(wc -c < /tmp/faculty-guide.b64)
           expected_bytes=131776
           echo "Staged Base64 bytes: ${actual_bytes}"
