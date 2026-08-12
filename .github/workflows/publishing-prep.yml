@@ -5,6 +5,7 @@ on:
     branches: [agent/publishing-prep]
     paths:
       - '.github/workflows/publishing-prep.yml'
+      - '.publish/repair-*'
   workflow_dispatch:
 
 permissions:
@@ -54,10 +55,10 @@ jobs:
           )
           : > /tmp/site.b64
           for i in $(seq -w 0 27); do
-            if [ "$i" = "08" ]; then
-              cat .publish/repair-008a .publish/repair-008b > "/tmp/part-${i}"
-            elif [ "$i" = "12" ]; then
-              cat .publish/repair-012a .publish/repair-012b > "/tmp/part-${i}"
+            a=".publish/repair-0${i}a"
+            b=".publish/repair-0${i}b"
+            if [ -f "$a" ] && [ -f "$b" ]; then
+              cat "$a" "$b" > "/tmp/part-${i}"
             elif [ "$i" = "27" ]; then
               head -c 2064 ".publish/part-0${i}" > "/tmp/part-${i}"
             else
