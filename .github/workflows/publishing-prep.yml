@@ -22,7 +22,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           expected_hashes=(
             80908693daab06386c0998f3b5654a89584a465506b7c966c6f43d748cd6b36a
             e76e1bf576e1a12954e694e61113bf230d4f14f9ef197a40d16022585408d1e2
@@ -56,13 +55,13 @@ jobs:
 
           : > /tmp/site.b64
           for i in $(seq -w 0 27); do
-            f=".publish/part-0${i}"
-            if [ "$i" = "27" ]; then
-              bytes=2064
+            if [ "$i" = "08" ]; then
+              cat .publish/repair-008a .publish/repair-008b > "/tmp/part-${i}"
+            elif [ "$i" = "27" ]; then
+              head -c 2064 ".publish/part-0${i}" > "/tmp/part-${i}"
             else
-              bytes=4000
+              head -c 4000 ".publish/part-0${i}" > "/tmp/part-${i}"
             fi
-            head -c "$bytes" "$f" > "/tmp/part-${i}"
             actual=$(sha256sum "/tmp/part-${i}" | awk '{print $1}')
             expected="${expected_hashes[$((10#$i))]}"
             if [ "$actual" != "$expected" ]; then
@@ -93,15 +92,10 @@ jobs:
             ! grep -q 'embedded-tutors.html' "$f"
             ! grep -q 'â' "$f"
           done
-
           python3 - <<'PY'
           from pathlib import Path
           import re
-          core = [
-              'index.html','getting-started.html','course-overview.html','corequisite-model.html',
-              'module-guide.html','assignments.html','instructional-strategies.html','assessment.html',
-              'syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html'
-          ]
+          core = ['index.html','getting-started.html','course-overview.html','corequisite-model.html','module-guide.html','assignments.html','instructional-strategies.html','assessment.html','syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html']
           missing = []
           for name in core:
               text = Path(name).read_text(encoding='utf-8')
@@ -126,7 +120,6 @@ jobs:
           rm -f .github/workflows/publishing-prep.yml
           rmdir .github/workflows 2>/dev/null || true
           rmdir .github 2>/dev/null || true
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
