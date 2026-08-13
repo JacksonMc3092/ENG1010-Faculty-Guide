@@ -174,3 +174,47 @@ a[target="_blank"]::after {
   #main-content .assignment-card h4 { display: block !important; }
   #main-content .assignment-badge { display: block !important; width: max-content; margin: .75rem 0 0 !important; }
 }
+
+
+/* August 13 small revision pass */
+/* Course Planning Guide: stronger separation between headings, descriptions, timelines, and sections */
+#main-content .content-section > .section-title {
+  margin-bottom: 2rem !important;
+}
+#main-content .intro-box h4 {
+  margin-bottom: 1.35rem !important;
+}
+#main-content .module-card {
+  margin-top: 3.75rem !important;
+  margin-bottom: 4rem !important;
+}
+#main-content .module-header {
+  margin-bottom: 1.8rem !important;
+}
+#main-content .module-title-section .module-weeks {
+  margin-top: .8rem !important;
+  margin-bottom: 0 !important;
+}
+#main-content .module-description {
+  margin-top: 1.45rem !important;
+  margin-bottom: 2rem !important;
+}
+#main-content .outcomes-section,
+#main-content .activities-section {
+  margin-top: 2.2rem !important;
+}
+#main-content .timeline-box {
+  margin-top: 2.4rem !important;
+  margin-bottom: 2.8rem !important;
+}
+#main-content .timeline-box h5 {
+  margin-bottom: 1.55rem !important;
+}
+#main-content .timeline-item + .timeline-item {
+  margin-top: 1rem !important;
+}
+
+/* Assignments: separate prompt text from the Why this works explanation */
+#main-content .prompt-box .prompt-text + p {
+  margin-top: 1.45rem !important;
+}
