@@ -54,9 +54,9 @@ jobs:
                   raise SystemExit(f'Expected Assessment text not found: {old[:100]}')
               s = s.replace(old, new, 1)
 
-          # Remove the Labor-Based Grading card entirely.
+          # Remove the Labor-Based Grading card entirely after the Specifications heading is renamed.
           labor_pattern = re.compile(
-              r'<div class="strategy-card">\s*<h4>✅ Labor-Based Grading \(Alternative\)</h4>.*?</div>\s*(?=<div class="strategy-card">\s*<h4>📈 Specifications Grading</h4>)',
+              r'<div class="strategy-card">\s*<h4>✅ Labor-Based Grading \(Alternative\)</h4>.*?</div>\s*(?=<div class="strategy-card">\s*<h4>Specifications Grading \(Optional Approach\)</h4>)',
               re.S,
           )
           s, n = labor_pattern.subn('', s, count=1)
