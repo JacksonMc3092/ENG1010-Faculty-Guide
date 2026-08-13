@@ -1,0 +1,62 @@
+name: Apply Syllabus revision
+
+on:
+  push:
+    branches: [agent/publishing-ready]
+    paths:
+      - '.github/workflows/apply-syllabus-revision.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  revise:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/publishing-ready
+
+      - name: Install parser
+        run: python -m pip install beautifulsoup4
+
+      - name: Apply approved syllabus revisions
+        run: python .publish-tools/patch-syllabus.py
+
+      - name: Validate page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('syllabus-templates.html').read_text(encoding='utf-8')
+          checks={
+            'skip link':'class="skip-link"' in s and 'id="main-content"' in s,
+            'active page':'aria-current="page"' in s,
+            'new heading':'Syllabus Guidance' in s,
+            'current course description':'Composition focuses on the study and practice of effective written communication across a variety of rhetorical situations.' in s,
+            'current prerequisite':'Placement as determined by placement process' in s,
+            'current outcomes framing':'Respond to Rhetorical Situations' in s and 'Engage with and Use Authoritative Sources' in s and 'Craft Logical Arguments' in s and 'Apply Language Conventions' in s,
+            'three rivers expectations':'at least 20 pages of finished formal writing' in s and 'recommended three-assignment sequence' in s,
+            'updated page ranges':'Essay 2 (5-7 pages)' in s and 'Essay 3 (6-8 pages)' in s,
+            'ct state resources':'https://ctstate.edu/for-you/faculty-staff' in s and 'https://ctstate.edu/curriculum-links/' in s and 'https://catalog.ctstate.edu/' in s,
+            'old course description removed':'This course introduces students to academic writing and critical reading.' not in s,
+            'old policy dump removed':'Required Policy Statements (Exact Wording)' not in s and 'CRITICAL:' not in s,
+            'old prerequisite removed':'Prerequisites (None for ENG 1010)' not in s,
+          }
+          bad=[k for k,v in checks.items() if not v]
+          if bad:
+              raise SystemExit('Validation failed: '+', '.join(bad))
+          print('Syllabus page validation passed')
+          PY
+
+      - name: Commit clean revision
+        run: |
+          rm -f .github/workflows/apply-syllabus-revision.yml
+          rm -rf .publish-tools
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Revise Syllabus Templates page"
+          git push origin HEAD:agent/publishing-ready
