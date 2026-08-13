@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artificial Intelligence in ENG 1010 - ENG 1010 Faculty Guide</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333333;
+            background: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        header {
+            background: linear-gradient(135deg, #2D3185 0%, #1a1f4d 100%);
+            color: white;
+            padding: 60px 60px 50px 60px;
+            border-bottom: 4px solid #FFCC00;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 171, 154, 0.1) 0%, rgba(255, 204, 0, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0057B8 0%, #003d82 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: 700;
+            color: white;
+        }
+
+        .header-content {
+            max-width: 900px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: #FFCC00;
+            margin-top: 12px;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.25em;
+            color: white;
+            font-weight: 300;
+        }
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .content {
+            padding: 60px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #2D3185;
+            margin: 60px 0 24px 0;
+            font-weight: 300;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #FFCC00 0%, #00AB9A 100%);
+            border-image-slice: 1;
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 60px;
+            height: 3px;
+            background: #FFCC00;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            color: #2D3185;
+            margin: 42px 0 18px 0;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #333333;
+        }
+
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-left: 5px solid #FFCC00;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-left: 5px solid #FFCC00;
+            padding: 40px;
+            margin: 35px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .welcome-box p {
+            margin-bottom: 16px;
+        }
+
+        .signature {
+            margin-top: 28px;
+            font-style: italic;
+            color: #666666;
+            border-top: 1px solid rgba(255, 204, 0, 0.3);
+            padding-top: 24px;
+        }
+
+        .info-box {
+            background: rgba(232, 245, 243, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-left: 5px solid #00AB9A;
+            border: 1px solid rgba(0, 171, 154, 0.2);
+            border-left: 5px solid #00AB9A;
+            padding: 28px;
+            margin: 28px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 16px rgba(0, 171, 154, 0.1);
+        }
+
+        .info-box strong {
+            color: #2D3185;
+            font-weight: 600;
+        }
+
+        .checklist {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            padding: 40px;
+            margin: 35px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .checklist h3 {
+            margin-top: 0;
+            color: #2D3185;
+            border-bottom: 3px solid #FFCC00;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .checklist ol {
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .checklist li {
+            padding: 14px 0;
+            font-size: 1.05em;
+            line-height: 1.7;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: #333333;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist a {
+            color: #00AB9A;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .checklist a:hover {
+            border-bottom: 1px solid #FFCC00;
+            color: #2D3185;
+        }
+
+        .contact-box {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 171, 154, 0.2);
+            border-left: 5px solid #00AB9A;
+            padding: 32px;
+            margin: 28px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 16px rgba(0, 171, 154, 0.08);
+        }
+
+        .contact-box h4 {
+            color: #2D3185;
+            margin-bottom: 16px;
+            font-weight: 400;
+            font-size: 1.4em;
+        }
+
+        .contact-box h4::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: #FFCC00;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+        .contact-box a {
+            color: #00AB9A;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .contact-box a:hover {
+            border-bottom: 1px solid #FFCC00;
+            color: #2D3185;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 28px 0;
+        }
+
+        .next-steps-list li {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 18px 24px;
+            margin: 14px 0;
+            border-left: 4px solid #00AB9A;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .next-steps-list li:hover {
+            background: rgba(255, 204, 0, 0.1);
+            border-left: 6px solid #FFCC00;
+            box-shadow: 0 4px 16px rgba(255, 204, 0, 0.2);
+            transform: translateX(4px);
+        }
+
+        .next-steps-list a {
+            color: #2D3185;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .next-steps-list a:hover {
+            color: #00AB9A;
+        }
+
+        footer {
+            background: #2D3185;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-top: 4px solid #00AB9A;
+        }
+
+        footer p {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: white;
+        }
+
+        footer p:first-child {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+            .content {
+                padding: 30px;
+            }
+
+            header {
+                padding: 40px 30px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .logo-placeholder {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6em;
+            }
+
+            h1 {
+                font-size: 2.4em;
+            }
+
+            h1::after {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .subtitle {
+            font-size: 1.25em;
+            color: white;
+            font-weight: 300;
+        }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            
+
+            .checklist, .welcome-box, .contact-box {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            .logo-placeholder {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4em;
+            }
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+
+            .content {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            
+        }
+    
+        /* Accessibility: keyboard skip link */
+        .skip-link { position: absolute; left: -9999px; top: 0; z-index: 10000; padding: 12px 16px; background: #ffffff; color: #1a1f4d; font-weight: 700; border: 3px solid #FFCC00; }
+        .skip-link:focus { left: 16px; top: 16px; }
+</style>
+<style id="publication-spacing">
+.content p, main p { margin-bottom: 20px; }
+.content h2, main h2 { margin-top: 60px; margin-bottom: 24px; }
+.content h3, main h3 { margin-top: 42px; margin-bottom: 18px; }
+.info-box, .warning-box, .tip-box, .highlight-box, .resource-box, .contact-card, .checklist-box { margin-top: 30px; margin-bottom: 30px; }
+</style><link href="assets/faculty-guide.css" rel="stylesheet"/><script defer="defer" src="assets/faculty-guide.js"></script></head>
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="fg-masthead" role="banner">
+<div class="fg-masthead-inner">
+<a aria-label="ENG 1010 Faculty Guide Hub" class="fg-brand" href="index.html">
+<span aria-hidden="true" class="fg-mark">FG</span>
+<span class="fg-brand-copy">
+<h1 class="fg-site-name">Faculty Guide</h1>
+<span class="fg-site-subtitle">ENG 1010: Composition | CT State - Three Rivers</span>
+</span>
+</a>
+<div class="fg-actions">
+<button aria-label="Search Faculty Guide" class="fg-icon-button" data-fg-search-open="" type="button"><span aria-hidden="true" class="fg-icon">⌕</span><span class="fg-action-label">Search</span></button>
+<button aria-label="Use dark theme" class="fg-icon-button" data-fg-theme="" type="button"><span aria-hidden="true" class="fg-icon">◐</span></button>
+<button aria-controls="faculty-guide-navigation" aria-expanded="false" class="fg-menu-button" data-fg-menu="" type="button"><span aria-hidden="true">☰</span><span>Menu</span></button>
+</div>
+</div>
+</div>
+<div class="fg-nav-wrap" id="faculty-guide-navigation">
+<div aria-label="Faculty Guide" class="fg-nav" role="navigation">
+<a class="fg-nav-home" href="index.html">Faculty Guide Hub</a>
+<div class="fg-nav-group">
+<button aria-expanded="false" data-fg-group-toggle="" type="button">Getting Started<span aria-hidden="true" class="fg-chevron">▾</span></button>
+<div class="fg-dropdown"><a href="getting-started.html">Getting Started</a><a href="course-overview.html">Course Overview</a><a href="corequisite-model.html">Corequisite Model</a></div>
+</div><div class="fg-nav-group">
+<button aria-expanded="false" data-fg-group-toggle="" type="button">Planning &amp; Teaching<span aria-hidden="true" class="fg-chevron">▾</span></button>
+<div class="fg-dropdown"><a href="module-guide.html">Module Guide</a><a href="assignments.html">Assignments</a><a href="instructional-strategies.html">Teaching Strategies</a><a href="assessment.html">Assessment</a></div>
+</div><div class="fg-nav-group">
+<button aria-expanded="false" data-fg-group-toggle="" type="button">Resources<span aria-hidden="true" class="fg-chevron">▾</span></button>
+<div class="fg-dropdown"><a href="syllabus-templates.html">Syllabus Guidance</a><a href="policies.html">Policies</a><a aria-current="page" href="ai-policy.html">AI Guidance</a><a href="faculty-support.html">Faculty Support</a></div>
+</div>
+<span class="fg-nav-spacer"></span>
+<span class="fg-section-chip">Resources</span>
+</div>
+</div>
+<div aria-hidden="true" class="fg-search-backdrop" data-fg-search-backdrop="">
+<div aria-label="Search Faculty Guide" aria-modal="true" class="fg-search-dialog" role="dialog">
+<div class="fg-search-head">
+<input aria-label="Search Faculty Guide pages" class="fg-search-input" data-fg-search-input="" placeholder="Search pages and topics…" type="search"/>
+<button aria-label="Close search" class="fg-search-close" data-fg-search-close="" type="button">×</button>
+</div>
+<div class="fg-search-results" data-fg-search-results=""></div>
+</div>
+</div>
+
+<div class="container">
+
+
+<div class="content" id="main-content"><div aria-label="Breadcrumb" class="fg-breadcrumb"><a href="index.html">Faculty Guide Hub</a><span aria-hidden="true" class="fg-breadcrumb-sep">/</span><span>Resources</span><span aria-hidden="true" class="fg-breadcrumb-sep">/</span><span>AI Guidance</span></div>
+<div class="alert-banner">
+<h2>AI Guidance for ENG 1010</h2>
+<p>Generative artificial intelligence is changing how students read, write, research, and work with information. ENG 1010 faculty should establish clear expectations for whether and how students may use AI tools in their courses and assignments.</p>
+<p style="margin-top: 15px;">CT State and CSCU guidance surrounding artificial intelligence continues to evolve. Faculty should consult current institutional resources and academic integrity guidance when developing course policies. This page provides ENG 1010 teaching guidance and sample approaches rather than an institution-wide AI policy.</p>
+</div>
+<div class="section">
+<h2>AI in the Writing Classroom</h2>
+<p>Generative AI tools can support brainstorming, drafting, revision, summarizing, research, and other writing tasks. They also raise important questions about authorship, source use, verification, academic integrity, and the purposes of writing assignments.</p>
+<ul style="padding-left: 40px; margin: 20px 0;">
+<li>What kinds of AI use support the learning goals of an assignment?</li>
+<li>What kinds of AI use replace the thinking or writing an assignment is designed to assess?</li>
+<li>How should students acknowledge or cite AI assistance?</li>
+<li>How can students verify AI-generated claims, sources, quotations, and citations?</li>
+</ul>
+<p>Faculty should establish clear expectations for AI use in the syllabus and, when appropriate, in individual assignments. Those expectations should remain aligned with current CT State and CSCU academic integrity guidance.</p>
+</div>
+<div class="section">
+<h2>Sample Approaches to Course AI Policies</h2>
+<p>Faculty may take different approaches to generative AI depending on their course design, assignments, and learning goals. The examples below are starting points that instructors may adapt.</p>
+<div class="strategy-box">
+<h4>Approach 1: Prohibition</h4>
+<p><strong>Policy:</strong> "The use of generative AI tools (ChatGPT, Claude, etc.) to generate any portion of assignments in this course constitutes academic dishonesty."</p>
+<p style="margin-top: 10px;"><strong>Rationale:</strong> Writing is thinking. Using AI to generate text short-circuits the learning process. Students need to struggle with ideas and language to develop as writers.</p>
+<p style="margin-top: 10px;"><strong>Considerations:</strong> Difficult to enforce. Students who use AI anyway may have an unfair advantage. Doesn't prepare students for workplaces where AI use is expected.</p>
+</div>
+<div class="strategy-box">
+<h4>Approach 2: Selective Permission</h4>
+<p><strong>Policy:</strong> "You may use AI tools for brainstorming, outlining, and editing grammar, but all final drafts must be your own words and ideas. You must cite any AI assistance in an 'AI Use Statement' at the end of your essay."</p>
+<p style="margin-top: 10px;"><strong>Rationale:</strong> Mirrors how professionals use AI—as a tool, not a replacement for human thinking. Teaches responsible AI use while maintaining focus on original thinking.</p>
+<p style="margin-top: 10px;"><strong>Considerations:</strong> Requires clear guidelines on what's permissible. Students may struggle to distinguish between "brainstorming" and "drafting."</p>
+</div>
+<div class="strategy-box">
+<h4>Approach 3: Transparent Integration</h4>
+<p><strong>Policy:</strong> "AI tools are permitted throughout your writing process. You must document and reflect on how you used AI tools in each assignment, explaining what you generated with AI, what you wrote yourself, and how you evaluated and revised AI-generated content."</p>
+<p style="margin-top: 10px;"><strong>Rationale:</strong> AI is here to stay. Our job is to teach students to be critical users of AI, not to pretend it doesn't exist. Focus shifts from "did you use AI?" to "how well did you use AI?"</p>
+<p style="margin-top: 10px;"><strong>Considerations:</strong> Requires rethinking what we assess. Focuses on synthesis, evaluation, and revision skills rather than text generation alone.</p>
+</div>
+<div class="info-box">
+<strong>Clarity and Consistency:</strong> These examples represent different approaches faculty may consider. Whatever approach an instructor adopts, expectations should be clearly communicated to students, applied consistently, and aligned with current CT State and CSCU academic integrity guidance.
+</div>
+</div>
+<div class="section">
+<h2>Crafting Your AI Policy</h2>
+<p>If you address generative AI in your syllabus or assignments, make the expectations concrete enough that students can tell what is permitted, what must be acknowledged, and what they are responsible for verifying.</p><div class="info-box">
+<strong>Three useful anchors:</strong> <strong>Permission</strong> — explain what kinds of AI use are allowed or not allowed. <strong>Acknowledgment</strong> — explain when and how students should disclose or cite AI assistance. <strong>Verification</strong> — remind students that they remain responsible for checking claims, quotations, sources, citations, and other material produced with AI assistance.
+</div>
+<h3>1. Define What You Mean by "AI Tools"</h3>
+<p>Be specific. Do you mean:</p>
+<ul style="padding-left: 40px; margin: 15px 0;">
+<li>Text generation tools? (ChatGPT, Claude, Copilot, Jasper)</li>
+<li>Grammar checkers? (Grammarly, ProWritingAid)</li>
+<li>Paraphrasing tools? (QuillBot, WordTune)</li>
+<li>Translation tools? (Google Translate, DeepL)</li>
+</ul>
+<p>Students need clarity on what's in bounds vs. out of bounds.</p>
+<h3>2. Explain Your Rationale</h3>
+<p>Help students understand <strong>why</strong> you're setting this policy. Connect it to learning outcomes:</p>
+<ul style="padding-left: 40px; margin: 15px 0;">
+<li>"This course focuses on developing your ability to construct arguments. AI can generate text, but it can't develop <em>your</em> thinking."</li>
+<li>"Learning to write well requires struggle and revision. AI can short-circuit that process."</li>
+<li>"Part of college is learning to use tools responsibly. We'll explore how AI can support—not replace—your writing."</li>
+</ul>
+<h3>3. Specify Consequences</h3>
+<p>What happens if students violate your policy? Be clear:</p>
+<ul style="padding-left: 40px; margin: 15px 0;">
+<li>First offense: Redo the assignment? Zero on the assignment? Meeting to discuss?</li>
+<li>Repeated offenses: Failing grade? Academic integrity violation reported to Dean?</li>
+</ul>
+<h3>4. Provide Examples (If Permitting Some Use)</h3>
+<p>Show students what responsible AI use looks like:</p>
+<ul style="padding-left: 40px; margin: 15px 0;">
+<li><strong>Acceptable:</strong> "I used ChatGPT to generate 5 possible thesis statements, then chose one and significantly revised it to better fit my argument."</li>
+<li><strong>Not Acceptable:</strong> "I pasted the assignment prompt into ChatGPT and submitted the essay it generated."</li>
+</ul>
+</div>
+<div class="section">
+<h2>Practical Strategies</h2>
+<p>Regardless of your policy, here are strategies to navigate the AI era:</p>
+<div class="strategy-box">
+<h4>Design Assignments that Emphasize Student Thinking</h4>
+<ul style="padding-left: 20px; margin-top: 10px;">
+<li><strong>Make it personal:</strong> Ask students to connect readings to their own experiences</li>
+<li><strong>Use unfamiliar texts:</strong> AI is trained on published content; unique class readings are harder for it to engage with</li>
+<li><strong>Require process documentation:</strong> Drafts, annotated bibliographies, peer review—AI can't fake the process</li>
+<li><strong>Emphasize synthesis over summary:</strong> AI can summarize well but struggles with original synthesis</li>
+<li><strong>Focus on local/specific topics:</strong> AI knowledge is general; specific case studies are harder</li>
+</ul>
+</div>
+<div class="strategy-box">
+<h4>Emphasize In-Class Writing</h4>
+<p>Increase the weight of in-class writing, timed essays, and exam components. These demonstrate a student's unaided abilities and provide a baseline for comparison with take-home work.</p>
+</div>
+<div class="strategy-box">
+<h4>Have Conversations, Not Just Policies</h4>
+<p>Dedicate class time to discussing AI tools:</p>
+<ul style="padding-left: 20px; margin-top: 10px;">
+<li>What can AI do well? What can't it do?</li>
+<li>When is it helpful vs. harmful to use AI in writing?</li>
+<li>What are the ethical implications of AI-generated content?</li>
+<li>How do we distinguish between AI assistance and AI plagiarism?</li>
+</ul>
+<p style="margin-top: 10px;">Frame it as a learning opportunity, not just a policing issue.</p>
+</div>
+<div class="strategy-box">
+<h4>Teach AI Literacy</h4>
+<p>Consider making AI literacy part of your curriculum:</p>
+<ul style="padding-left: 20px; margin-top: 10px;">
+<li>Have students prompt AI to write an essay, then critique it</li>
+<li>Teach students to fact-check AI output (AI hallucinates sources!)</li>
+<li>Discuss when AI-generated text is detectable and why</li>
+<li>Explore the limitations of AI in understanding nuance, context, and original thought</li>
+</ul>
+</div>
+<div class="warning-box">
+<strong>⚠️ AI Detection Requires Caution:</strong> AI-detection scores should not be treated as proof that a student used generative AI. If a submission raises concerns, consider the student’s writing process, prior work, sources, drafts, and other available evidence, and follow the same faculty-first conversation process described on the Policies page.
+</div>
+</div>
+<div class="section">
+<h2>Current AI &amp; Academic Integrity Resources</h2>
+<p>Because institutional guidance and AI tools continue to change, use current CT State resources when developing or revising course policies.</p>
+<ul style="padding-left: 40px; margin: 20px 0;">
+<li><a href="https://ctstate.edu/for-you/faculty-staff">CT State Faculty &amp; Staff Resources</a> — current faculty guidance, forms, and institutional resources.</li>
+<li><a href="https://library.ctstate.edu/c.php?g=1406992&amp;p=10656285">CT State Library: Using and Citing AI</a> — student-facing guidance on permission, acknowledgment, citation, and verification.</li>
+<li><a href="https://catalog.ctstate.edu/academic-policies-procedures/expectation-academic-integrity/">CT State Academic Integrity</a> — current academic integrity expectations and procedures.</li>
+<li><a href="https://ctstate.edu/conduct">CT State Conduct</a> — Student Code of Conduct, academic misconduct information, and referral resources.</li>
+</ul>
+</div>
+<div aria-label="Faculty Guide page navigation" class="fg-page-nav"><a class="fg-prev" href="policies.html"><span class="fg-page-nav-label">Previous</span><span class="fg-page-nav-title">Policies</span></a><a class="fg-hub-link" href="index.html"><span class="fg-page-nav-label">Faculty Guide</span><span class="fg-page-nav-title">Hub</span></a><a class="fg-next" href="faculty-support.html"><span class="fg-page-nav-label">Next</span><span class="fg-page-nav-title">Faculty Support</span></a></div></div>
+<footer><p><strong>CT State Community College | English 1010: Composition Faculty Guide</strong></p><p>Last updated: August 2026</p></footer></div><button aria-label="Back to top" class="fg-back-top" data-fg-back-top="" type="button">↑</button></body></html>

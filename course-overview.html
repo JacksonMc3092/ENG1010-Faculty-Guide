@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Overview | English 1010 Faculty Guide</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333333;
+            background: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        header {
+            background: linear-gradient(135deg, #2D3185 0%, #1a1f4d 100%);
+            color: white;
+            padding: 60px 60px 50px 60px;
+            border-bottom: 4px solid #FFCC00;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 171, 154, 0.1) 0%, rgba(255, 204, 0, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .logo {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0057B8 0%, #003d82 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: 700;
+            color: white;
+        }
+
+        .header-content {
+            max-width: 900px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: #FFCC00;
+            margin-top: 12px;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.25em;
+            color: white;
+            font-weight: 300;
+        }
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        .content {
+            padding: 60px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #2D3185;
+            margin: 50px 0 20px 0;
+            font-weight: 300;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #FFCC00 0%, #00AB9A 100%);
+            border-image-slice: 1;
+            padding-bottom: 12px;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 60px;
+            height: 3px;
+            background: #FFCC00;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            color: #2D3185;
+            margin: 35px 0 15px 0;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #333333;
+        }
+
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-left: 5px solid #FFCC00;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-left: 5px solid #FFCC00;
+            padding: 40px;
+            margin: 35px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .welcome-box p {
+            margin-bottom: 16px;
+        }
+
+        .signature {
+            margin-top: 28px;
+            font-style: italic;
+            color: #666666;
+            border-top: 1px solid rgba(255, 204, 0, 0.3);
+            padding-top: 24px;
+        }
+
+        .info-box {
+            background: rgba(232, 245, 243, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-left: 5px solid #00AB9A;
+            border: 1px solid rgba(0, 171, 154, 0.2);
+            border-left: 5px solid #00AB9A;
+            padding: 28px;
+            margin: 28px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 16px rgba(0, 171, 154, 0.1);
+        }
+
+        .info-box strong {
+            color: #2D3185;
+            font-weight: 600;
+        }
+
+        .checklist {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            padding: 40px;
+            margin: 35px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .checklist h3 {
+            margin-top: 0;
+            color: #2D3185;
+            border-bottom: 3px solid #FFCC00;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .checklist ol {
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .checklist li {
+            padding: 14px 0;
+            font-size: 1.05em;
+            line-height: 1.7;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: #333333;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist a {
+            color: #00AB9A;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .checklist a:hover {
+            border-bottom: 1px solid #FFCC00;
+            color: #2D3185;
+        }
+
+        .contact-box {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 171, 154, 0.2);
+            border-left: 5px solid #00AB9A;
+            padding: 32px;
+            margin: 28px 0;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px 16px rgba(0, 171, 154, 0.08);
+        }
+
+        .contact-box h4 {
+            color: #2D3185;
+            margin-bottom: 16px;
+            font-weight: 400;
+            font-size: 1.4em;
+        }
+
+        .contact-box h4::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: #FFCC00;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+        .contact-box a {
+            color: #00AB9A;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .contact-box a:hover {
+            border-bottom: 1px solid #FFCC00;
+            color: #2D3185;
+        }
+
+        .next-steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 28px 0;
+        }
+
+        .next-steps-list li {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 18px 24px;
+            margin: 14px 0;
+            border-left: 4px solid #00AB9A;
+            border-radius: 0.375rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .next-steps-list li:hover {
+            background: rgba(255, 204, 0, 0.1);
+            border-left: 6px solid #FFCC00;
+            box-shadow: 0 4px 16px rgba(255, 204, 0, 0.2);
+            transform: translateX(4px);
+        }
+
+        .next-steps-list a {
+            color: #2D3185;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .next-steps-list a:hover {
+            color: #00AB9A;
+        }
+
+        footer {
+            background: #2D3185;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-top: 4px solid #00AB9A;
+        }
+
+        footer p {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: white;
+        }
+
+        footer p:first-child {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+            .content {
+                padding: 30px;
+            }
+
+            header {
+                padding: 40px 30px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .logo-placeholder {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6em;
+            }
+
+            h1 {
+                font-size: 2.4em;
+            }
+
+            h1::after {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .subtitle {
+            font-size: 1.25em;
+            color: white;
+            font-weight: 300;
+        }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            
+
+            .checklist, .welcome-box, .contact-box {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            .logo-placeholder {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4em;
+            }
+        
+        
+        
+        nav {
+            background: rgba(45, 49, 133, 0.95);
+            border-bottom: 3px solid #FFCC00;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Main navigation row */
+        .nav-main {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        /* Home link */
+        .nav-home {
+            background: rgba(0, 171, 154, 0.2);
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* All nav links */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            display: block;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(0, 171, 154, 0.3);
+            outline: 2px solid #FFCC00;
+            outline-offset: -2px;
+        }
+
+        nav a.active {
+            background: rgba(0, 171, 154, 0.4);
+            border-bottom: 3px solid #FFCC00;
+            font-weight: 600;
+        }
+
+        /* Category sections - always visible */
+        .nav-section {
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-section-header {
+            background: rgba(0, 0, 0, 0.2);
+            color: #FFCC00;
+            padding: 10px 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-section-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section-links a {
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-left: 30px;
+        }
+
+        .nav-section-links a:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 968px) {
+            .nav-main {
+                flex-direction: column;
+            }
+            
+            .nav-section {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid rgba(255,255,255,0.2);
+            }
+            
+            .nav-section-links {
+                flex-direction: column;
+            }
+            
+            nav a {
+                border-right: none;
+            }
+        }
+
+        @media (min-width: 969px) {
+            .nav-main {
+                flex-direction: row;
+            }
+            
+            .nav-section {
+                flex: 1;
+            }
+            
+            .nav-section-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .nav-section-links a {
+                flex: 1 1 auto;
+                min-width: 150px;
+            }
+        }
+
+            .content {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            
+        }
+    
+        /* Accessibility: keyboard skip link */
+        .skip-link { position: absolute; left: -9999px; top: 0; z-index: 10000; padding: 12px 16px; background: #ffffff; color: #1a1f4d; font-weight: 700; border: 3px solid #FFCC00; }
+        .skip-link:focus { left: 16px; top: 16px; }
+</style>
+<style id="publication-spacing">
+.content p, main p { margin-bottom: 20px; }
+.content h2, main h2 { margin-top: 60px; margin-bottom: 24px; }
+.content h3, main h3 { margin-top: 42px; margin-bottom: 18px; }
+.info-box, .warning-box, .tip-box, .highlight-box, .resource-box, .contact-card, .checklist-box { margin-top: 30px; margin-bottom: 30px; }
+</style><link href="assets/faculty-guide.css" rel="stylesheet"/><script defer="defer" src="assets/faculty-guide.js"></script></head>
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="fg-masthead" role="banner">
+<div class="fg-masthead-inner">
+<a aria-label="ENG 1010 Faculty Guide Hub" class="fg-brand" href="index.html">
+<span aria-hidden="true" class="fg-mark">FG</span>
+<span class="fg-brand-copy">
+<h1 class="fg-site-name">Faculty Guide</h1>
+<span class="fg-site-subtitle">ENG 1010: Composition | CT State - Three Rivers</span>
+</span>
+</a>
+<div class="fg-actions">
+<button aria-label="Search Faculty Guide" class="fg-icon-button" data-fg-search-open="" type="button"><span aria-hidden="true" class="fg-icon">⌕</span><span class="fg-action-label">Search</span></button>
+<button aria-label="Use dark theme" class="fg-icon-button" data-fg-theme="" type="button"><span aria-hidden="true" class="fg-icon">◐</span></button>
+<button aria-controls="faculty-guide-navigation" aria-expanded="false" class="fg-menu-button" data-fg-menu="" type="button"><span aria-hidden="true">☰</span><span>Menu</span></button>
+</div>
+</div>
+</div>
+<div class="fg-nav-wrap" id="faculty-guide-navigation">
+<div aria-label="Faculty Guide" class="fg-nav" role="navigation">
+<a class="fg-nav-home" href="index.html">Faculty Guide Hub</a>
+<div class="fg-nav-group">
+<button aria-expanded="false" data-fg-group-toggle="" type="button">Getting Started<span aria-hidden="true" class="fg-chevron">▾</span></button>
+<div class="fg-dropdown"><a href="getting-started.html">Getting Started</a><a aria-current="page" href="course-overview.html">Course Overview</a><a href="corequisite-model.html">Corequisite Model</a></div>
+</div><div class="fg-nav-group">
+<button aria-expanded="false" data-fg-group-toggle="" type="button">Planning &amp; Teaching<span aria-hidden="true" class="fg-chevron">▾</span></button>
+<div class="fg-dropdown"><a href="module-guide.html">Module Guide</a><a href="assignments.html">Assignments</a><a href="instructional-strategies.html">Teaching Strategies</a><a href="assessment.html">Assessment</a></div>
+</div><div class="fg-nav-group">
+<button aria-expanded="false" data-fg-group-toggle="" type="button">Resources<span aria-hidden="true" class="fg-chevron">▾</span></button>
+<div class="fg-dropdown"><a href="syllabus-templates.html">Syllabus Guidance</a><a href="policies.html">Policies</a><a href="ai-policy.html">AI Guidance</a><a href="faculty-support.html">Faculty Support</a></div>
+</div>
+<span class="fg-nav-spacer"></span>
+<span class="fg-section-chip">Getting Started</span>
+</div>
+</div>
+<div aria-hidden="true" class="fg-search-backdrop" data-fg-search-backdrop="">
+<div aria-label="Search Faculty Guide" aria-modal="true" class="fg-search-dialog" role="dialog">
+<div class="fg-search-head">
+<input aria-label="Search Faculty Guide pages" class="fg-search-input" data-fg-search-input="" placeholder="Search pages and topics…" type="search"/>
+<button aria-label="Close search" class="fg-search-close" data-fg-search-close="" type="button">×</button>
+</div>
+<div class="fg-search-results" data-fg-search-results=""></div>
+</div>
+</div>
+
+<!-- Header with Breadcrumb -->
+
+
+<!-- Main Content -->
+<main class="container my-5" id="main-content"><div aria-label="Breadcrumb" class="fg-breadcrumb"><a href="index.html">Faculty Guide Hub</a><span aria-hidden="true" class="fg-breadcrumb-sep">/</span><span>Getting Started</span><span aria-hidden="true" class="fg-breadcrumb-sep">/</span><span>Course Overview</span></div>
+<!-- Course Description Section -->
+<section class="content-section">
+<h2 class="section-title">Course Description</h2>
+<div class="course-description">
+<h4>ENG 1010: Composition</h4>
+<p><strong>Credits:</strong> 3 | <strong>Contact Hours:</strong> 3 lecture hours</p>
+<p><strong>Prerequisites:</strong> Placement as determined by placement process</p>
+<p><strong>Course Descriptors:</strong> Lecture and workshop</p>
+<hr/>
+<p>Composition focuses on the study and practice of effective written communication across a variety of rhetorical situations. The course develops skills in applying language conventions, engaging with and using authoritative sources, and crafting logical arguments.</p>
+</div>
+<div class="highlight-box">
+<h4>Course Context</h4>
+<p>English 1010 is a requirement in almost every academic degree and certificate program at CT State Community College. The learning outcomes and curriculum of the course are designed to meet the Board of Regents Transfer and Articulation Policy (TAP) for the Written Communication competency area.</p>
+<p class="mb-0"><strong>Note:</strong> ENG 1010 is taught in multiple modalities: on-ground, online (asynchronous or synchronous), hybrid, and LRON (Live Remote Online).</p>
+</div>
+</section>
+<!-- Student Learning Outcomes Section -->
+<section class="content-section">
+<h2 class="section-title">Student Learning Outcomes</h2>
+<p class="lead">Upon successful completion of this course, students will be able to:</p>
+<div class="outcomes-container">
+<!-- Outcome 1: Respond to Rhetorical Situations -->
+<div class="outcome-category">
+<h4>
+<span class="category-number">1</span>
+<span>Respond to Rhetorical Situations</span>
+</h4>
+<ul class="outcome-list">
+<li>Adapt writing as audience and purpose requires</li>
+<li>Develop and apply an independent writing process that includes generating, revising, editing, and proofreading</li>
+<li>Reflect on and explain writing choices regarding audience and purpose</li>
+</ul>
+</div>
+<!-- Outcome 2: Engage with and Use Authoritative Sources -->
+<div class="outcome-category">
+<h4>
+<span class="category-number">2</span>
+<span>Engage with and Use Authoritative Sources</span>
+</h4>
+<ul class="outcome-list">
+<li>Use the reading process to differentiate between supporting points, evidence, and reasoning in complex texts (texts that engage with multiple perspectives and use a variety of rhetorical strategies and evidence)</li>
+<li>Employ effective annotation skills to the reading of complex texts</li>
+<li>Locate and evaluate sources appropriate to the rhetorical situation</li>
+<li>Interpret and analyze argument, evidence, and rhetorical strategies in complex texts</li>
+<li>Evaluate information in complex texts for accuracy, validity, and relevance, with particular attention to the type and purpose of source material</li>
+<li>Demonstrate critical and evaluative reading comprehension</li>
+<li>Write accurate summaries and paraphrases of complex texts and differentiate these from student's own writing</li>
+<li>Respond to an argument in a complex text and synthesize perspectives in multiple texts</li>
+<li>Integrate complex texts to fulfill the rhetorical purpose</li>
+</ul>
+</div>
+<!-- Outcome 3: Craft Logical Arguments -->
+<div class="outcome-category">
+<h4>
+<span class="category-number">3</span>
+<span>Craft Logical Arguments</span>
+</h4>
+<ul class="outcome-list">
+<li>Produce essays with clear thesis statements (or controlling ideas) and logical support for assertions</li>
+<li>Compose unified, coherent, and fully developed paragraphs with attention to transitions and signal phrasing for source material</li>
+<li><strong>By the end of the semester, write at least one thesis-driven, text-based essay of 1500 words demonstrating competent argumentation using complex texts</strong></li>
+</ul>
+</div>
+<!-- Outcome 4: Apply Language Conventions -->
+<div class="outcome-category">
+<h4>
+<span class="category-number">4</span>
+<span>Apply Language Conventions</span>
+</h4>
+<ul class="outcome-list">
+<li>Apply Standard English language conventions (diction, tone, or level of formality) consistently, with particular attention to college-level writing situations</li>
+<li>Cite varied sources in MLA citation style</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Required Text Section -->
+<section class="content-section">
+<h2 class="section-title">Required Text</h2>
+<div class="text-box">
+<h5>Current Required Textbook</h5>
+<p><strong>Graff, Gerald, Cathy Birkenstein, Russel Durst, and Laura J. Panning Davies. <em>"They Say / I Say" with Readings</em>. 6th edition. W.W. Norton, 2024. ISBN: 978-1324070139</strong></p>
+<p><strong>ISBN:</strong> 978-0-393-61766-3</p>
+<p><a class="btn btn-sm btn-outline-primary" href="https://wwnorton.com/books/9781324070139" target="_blank">
+<i class="fas fa-external-link-alt me-2"></i>View on Norton Website
+                </a></p>
+</div>
+<div class="highlight-box">
+<h4>Important Notes on Course Texts</h4>
+<p>The English 1010 curriculum committee reviews and selects texts for ENG 1010 that contain challenging material that encourages critical engagement with topics. The selected text supports opportunities for research and presents multiple perspectives on issues.</p>
+<p><strong>Instructors may not require a different text or handbook without permission of the Curriculum Leader or Department Chair.</strong> However, instructors may supplement course texts with outside material that helps students deepen their understanding or assists with the writing process. Such supplemental material should be limited in scope and not serve as a substitute for the required text.</p>
+</div>
+<div class="text-box">
+<h5>Reading Requirements</h5>
+<p>Throughout the semester, students should encounter <strong>6 to 8 substantive readings of varying complexity</strong> from the required text and/or supplemental readings. Additional readings may be appropriate. Our students need guidance learning to read carefully and critically; they need time to reflect, write, and revise based on feedback from the instructor and their peers.</p>
+<p class="mb-0"><strong>Best Practice:</strong> Select readings that illustrate multiple perspectives on an issue and that demonstrate the kinds of reading challenges students will find across academic disciplines.</p>
+</div>
+</section>
+<!-- Student Writing Requirements -->
+<section class="content-section">
+<h2 class="section-title">Student Writing Requirements</h2>
+<p>To help ensure consistency across all sections and to achieve the course outcomes, the English 1010 curriculum has established clear writing requirements:</p>
+<div class="highlight-box">
+<h4>Required Formal Writing</h4>
+<p>Students are required to complete <strong>at least 20 pages of finished formal writing</strong> over the course of the semester.</p>
+<ul>
+<li>Major assignments should be at least 3 to 6 pages in length</li>
+<li>Students must write at least one major researched paper of at least 7 pages (approximately 1500 words)</li>
+<li><strong>Informal writing</strong> such as journal responses, short reaction papers, portfolio cover letters, or letters of self-evaluation are essential to the writing process but <strong>should not be counted as part of the 20 pages of finished work</strong></li>
+<li>One twenty-page paper would not achieve course goals and is not an acceptable option</li>
+</ul>
+</div>
+<p><strong>Important:</strong> In order to pass the course, <strong>students must submit ALL formal assignments</strong>.</p>
+</section>
+<!-- Assignment Sequence -->
+<section class="content-section">
+<h2 class="section-title">Assignment Sequence</h2>
+<p>There are <strong>three required assignments</strong> in ENG 1010. Each assignment should encourage students to develop academic arguments. While common assignments help keep the program consistent across all sections, each instructor has the freedom to design the overall course to meet the learning outcomes based on their own experience and teaching style.</p>
+<!-- Assignment 1 -->
+<div class="assignment-card">
+<h4>
+Assignment 1: Close Reading / Critical Analysis<span class="assignment-badge">3-5 pages</span>
+</h4>
+<p><strong>Focus:</strong> This assignment asks students to respond critically to one or two essays, emphasizing close reading and critical analysis.</p>
+<p><strong>Rationale:</strong> The ability to analyze information and texts is an important component in academic and professional settings. The first reading selections of the semester should be more accessible for first-year composition students new to the critical reading and writing expected in college. Students should encounter more complex readings as the semester progresses.</p>
+<p class="mb-0"><strong>Skills Emphasized:</strong> Close reading, textual analysis, identifying rhetorical strategies, understanding author's argument and evidence</p>
+</div>
+<!-- Assignment 2 -->
+<div class="assignment-card">
+<h4>
+Assignment 2: Synthesis Essay<span class="assignment-badge">5-7 pages</span>
+</h4>
+<p><strong>Focus:</strong> An essay that makes insightful connections between two or three texts, going beyond simple compare/contrast constructions.</p>
+<p><strong>Rationale:</strong> This assignment asks students to continue sharpening their analytical skills by adding their voice into a conversation of ideas among various authors and texts through synthesis. As Charles Bazerman notes in <em>The Informed Writer</em>, "All professions that use data or knowledge constantly require synthesis; that is, putting information from a number of sources into one usable, coherent form."</p>
+<p class="mb-0"><strong>Skills Emphasized:</strong> Synthesis, making connections between texts, coherence strategies, transitions, integrating multiple sources, developing original insights</p>
+</div>
+<!-- Assignment 3 -->
+<div class="assignment-card">
+<h4>
+Assignment 3: Research Project<span class="assignment-badge">6-8 pages</span>
+</h4>
+<p><strong>Focus:</strong> A researched project paper (plus a works cited) that explores a topic in depth by developing good questions about a problem or issue.</p>
+<p><strong>Rationale:</strong> This assignment takes the skills of research and uses them to create a research project that explores a topic comprehensively. Successful research projects result from developing good questions about a problem or issue within a topic area. Students are encouraged to cultivate an argument by considering multiple perspectives on an issue.</p>
+<p><strong>Important:</strong> The importance of developing good research questions is highlighted in this unit. We ask students to engage in the complexity of topics they are researching—moving beyond dualistic constructions of "for/against" or "good/bad"—and learn that often academic scholarship leads to more questions rather than simplistic, concrete answers.</p>
+<p class="mb-0"><strong>Skills Emphasized:</strong> Research question development, library and database skills, source evaluation, integrating research, synthesizing multiple perspectives, sustained argumentation</p>
+</div>
+<div class="highlight-box">
+<h4>Course Design Principles</h4>
+<p>Early in the semester, instructors should emphasize effective close reading strategies and rhetorical analysis. As the semester progresses, the focus should be on the importance of synthesis, recognizing multiple perspectives, and establishing an argument.</p>
+<p><strong>Best Practice:</strong> Demystify the process as much as possible. Let students know how a reading, assignment, or learning task is relevant to the course goals. Be explicit about how previous work connects to new assignments and how current activities will help with upcoming work. Emphasize learning as a recursive process.</p>
+</div>
+</section>
+<!-- Thematic Organization -->
+<section class="content-section">
+<h2 class="section-title">Thematic Organization</h2>
+<p>Many instructors select two or three "units" or topic areas for the semester with corresponding readings. This approach is most effective for students if some connection is established between the units through one or two core concepts such as:</p>
+<div class="row mt-3">
+<div class="col-md-4 mb-3">
+<div class="info-badge w-100 text-center">Identity</div>
+</div>
+<div class="col-md-4 mb-3">
+<div class="info-badge w-100 text-center">Social Class</div>
+</div>
+<div class="col-md-4 mb-3">
+<div class="info-badge w-100 text-center">Ethics</div>
+</div>
+<div class="col-md-4 mb-3">
+<div class="info-badge w-100 text-center">Education</div>
+</div>
+<div class="col-md-4 mb-3">
+<div class="info-badge w-100 text-center">Technology</div>
+</div>
+<div class="col-md-4 mb-3">
+<div class="info-badge w-100 text-center">Communication</div>
+</div>
+</div>
+<p class="mt-3">Having a central theme or vision for the course invites plenty of room for exploration through diverse readings, class discussions, and research.</p>
+</section>
+<!-- Next Steps Navigation -->
+<section class="content-section">
+<h2 class="section-title">Next Steps</h2>
+<a class="nav-link-card" href="module-guide.html">
+<i class="fas fa-calendar-alt"></i>
+<div class="link-content">
+<div class="link-title">Module-by-Module Guide</div>
+<p class="link-description">View semester pacing and detailed module breakdowns</p>
+</div>
+<i class="fas fa-arrow-right arrow"></i>
+</a>
+<a class="nav-link-card" href="assignments.html">
+<i class="fas fa-tasks"></i>
+<div class="link-content">
+<div class="link-title">Assignment Examples &amp; Prompts</div>
+<p class="link-description">Access sample assignments and writing prompts</p>
+</div>
+<i class="fas fa-arrow-right arrow"></i>
+</a>
+<a class="nav-link-card" href="corequisite-model.html">
+<i class="fas fa-users"></i>
+<div class="link-content">
+<div class="link-title">Corequisite Model (1010/0910)</div>
+<p class="link-description">Learn about the ACME corequisite structure</p>
+</div>
+<i class="fas fa-arrow-right arrow"></i>
+</a>
+</section>
+<div aria-label="Faculty Guide page navigation" class="fg-page-nav"><a class="fg-prev" href="getting-started.html"><span class="fg-page-nav-label">Previous</span><span class="fg-page-nav-title">Getting Started</span></a><a class="fg-hub-link" href="index.html"><span class="fg-page-nav-label">Faculty Guide</span><span class="fg-page-nav-title">Hub</span></a><a class="fg-next" href="corequisite-model.html"><span class="fg-page-nav-label">Next</span><span class="fg-page-nav-title">Corequisite Model</span></a></div></main>
+<!-- Footer -->
+<footer class="site-footer"><p><strong>CT State Community College | English 1010: Composition Faculty Guide</strong></p><p>Last updated: August 2026</p></footer>
+<button aria-label="Back to top" class="fg-back-top" data-fg-back-top="" type="button">↑</button></body>
+</html>
