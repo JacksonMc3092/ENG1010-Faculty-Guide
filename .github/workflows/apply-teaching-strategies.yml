@@ -20,6 +20,9 @@ jobs:
         with:
           ref: agent/publishing-ready
 
+      - name: Install parser
+        run: python -m pip install --quiet beautifulsoup4
+
       - name: Apply approved page revisions
         run: python .publish-tools/patch-teaching.py
 
