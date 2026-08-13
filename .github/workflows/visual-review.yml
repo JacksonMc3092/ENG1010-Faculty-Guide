@@ -1,0 +1,86 @@
+name: Capture Faculty Guide visual review
+
+on:
+  push:
+    branches: [agent/publishing-ready]
+    paths:
+      - '.github/workflows/visual-review.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/publishing-ready
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+      - name: Start local server
+        run: |
+          python3 -m http.server 4173 >/tmp/faculty-guide-server.log 2>&1 &
+          sleep 2
+      - name: Capture screenshots and layout report
+        run: |
+          cat > /tmp/capture.js <<'JS'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const pages = ['index.html','assignments.html','policies.html','faculty-support.html'];
+          const viewports = [
+            {name:'desktop', width:1440, height:1000},
+            {name:'mobile', width:390, height:844}
+          ];
+          (async()=>{
+            const browser = await chromium.launch({headless:true});
+            fs.mkdirSync('visual-review',{recursive:true});
+            const report=[];
+            for (const vp of viewports) {
+              for (const file of pages) {
+                for (const theme of ['light','dark']) {
+                  const context = await browser.newContext({viewport:{width:vp.width,height:vp.height}, colorScheme:theme});
+                  const page = await context.newPage();
+                  await page.goto(`http://127.0.0.1:4173/${file}`, {waitUntil:'networkidle'});
+                  await page.evaluate((theme)=>{ localStorage.setItem('fg-theme', theme); document.documentElement.dataset.theme=theme; }, theme);
+                  await page.reload({waitUntil:'networkidle'});
+                  const slug=file.replace('.html','');
+                  await page.screenshot({path:`visual-review/${slug}-${vp.name}-${theme}.png`, fullPage:true});
+                  const metrics=await page.evaluate(()=>{
+                    const body=document.body;
+                    const main=document.querySelector('#main-content');
+                    const mast=document.querySelector('.fg-masthead');
+                    const nav=document.querySelector('.fg-nav-wrap');
+                    const overflow=[...document.querySelectorAll('body *')].filter(el=>el.scrollWidth>el.clientWidth+2 && getComputedStyle(el).overflowX==='visible').slice(0,20).map(el=>({tag:el.tagName,cls:el.className,sw:el.scrollWidth,cw:el.clientWidth,text:(el.textContent||'').trim().slice(0,80)}));
+                    return {
+                      title:document.title,
+                      bodyWidth:body.scrollWidth,
+                      viewport:window.innerWidth,
+                      horizontalOverflow:body.scrollWidth>window.innerWidth+2,
+                      mainWidth:main?.getBoundingClientRect().width,
+                      mastHeight:mast?.getBoundingClientRect().height,
+                      navHeight:nav?.getBoundingClientRect().height,
+                      overflow
+                    };
+                  });
+                  report.push({file,viewport:vp.name,theme,...metrics});
+                  await context.close();
+                }
+              }
+            }
+            fs.writeFileSync('visual-review/layout-report.json',JSON.stringify(report,null,2));
+            await browser.close();
+          })();
+          JS
+          node /tmp/capture.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: faculty-guide-visual-review
+          path: visual-review/
+          retention-days: 3
