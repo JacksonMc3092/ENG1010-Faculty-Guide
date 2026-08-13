@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# One-time publication typography alignment helper.
 path = Path('assets/faculty-guide.css')
 css = path.read_text(encoding='utf-8')
 marker = '/* SCHOLARS COMPASS TYPOGRAPHY ALIGNMENT */'
