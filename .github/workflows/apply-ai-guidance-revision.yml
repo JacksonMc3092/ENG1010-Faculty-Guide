@@ -1,0 +1,223 @@
+name: Apply approved AI guidance revision
+
+on:
+  push:
+    branches: [agent/publishing-ready]
+    paths:
+      - '.github/workflows/apply-ai-guidance-revision.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  revise:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/publishing-ready
+
+      - name: Install parser
+        run: python -m pip install beautifulsoup4
+
+      - name: Apply approved AI guidance edits
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import re
+
+          path = Path('ai-policy.html')
+          raw = path.read_text(encoding='utf-8')
+          soup = BeautifulSoup(raw, 'html.parser')
+
+          def heading_text(tag):
+              return ' '.join(tag.stripped_strings)
+
+          def find_h2(needle):
+              for h in soup.find_all('h2'):
+                  if needle.lower() in heading_text(h).lower():
+                      return h
+              raise SystemExit(f'Could not find h2 containing: {needle}')
+
+          def replace_inner(tag, html):
+              tag.clear()
+              frag = BeautifulSoup(html, 'html.parser')
+              for child in list(frag.contents):
+                  tag.append(child)
+
+          # Browser title
+          if soup.title:
+              soup.title.string = 'Artificial Intelligence in ENG 1010 - ENG 1010 Faculty Guide'
+
+          # Opening guidance banner
+          banner = soup.find('div', class_='alert-banner')
+          if banner is None:
+              raise SystemExit('AI guidance banner not found')
+          replace_inner(banner, '''
+          <h2>AI Guidance for ENG 1010</h2>
+          <p>Generative artificial intelligence is changing how students read, write, research, and work with information. ENG 1010 faculty should establish clear expectations for whether and how students may use AI tools in their courses and assignments.</p>
+          <p style="margin-top: 15px;">CT State and CSCU guidance surrounding artificial intelligence continues to evolve. Faculty should consult current institutional resources and academic integrity guidance when developing course policies. This page provides ENG 1010 teaching guidance and sample approaches rather than an institution-wide AI policy.</p>
+          ''')
+
+          # Current landscape -> teaching-focused framing
+          h = find_h2('Current Landscape')
+          section = h.find_parent('div', class_='section')
+          h.string = 'AI in the Writing Classroom'
+          first_p = h.find_next_sibling('p')
+          if first_p is None:
+              raise SystemExit('Current landscape opening paragraph not found')
+          first_p.string = ('Generative AI tools can support brainstorming, drafting, revision, summarizing, research, and other writing tasks. '
+                            'They also raise important questions about authorship, source use, verification, academic integrity, and the purposes of writing assignments.')
+          ul = section.find('ul')
+          if ul is None:
+              raise SystemExit('Current landscape question list not found')
+          replace_inner(ul, '''
+          <li>What kinds of AI use support the learning goals of an assignment?</li>
+          <li>What kinds of AI use replace the thinking or writing an assignment is designed to assess?</li>
+          <li>How should students acknowledge or cite AI assistance?</li>
+          <li>How can students verify AI-generated claims, sources, quotations, and citations?</li>
+          ''')
+          paragraphs = section.find_all('p', recursive=False)
+          if len(paragraphs) < 2:
+              raise SystemExit('Current landscape closing paragraph not found')
+          paragraphs[-1].string = ('Faculty should establish clear expectations for AI use in the syllabus and, when appropriate, in individual assignments. '
+                                   'Those expectations should remain aligned with current CT State and CSCU academic integrity guidance.')
+
+          # Sample policy approaches
+          h = find_h2('Philosophical Approaches')
+          section = h.find_parent('div', class_='section')
+          h.string = 'Sample Approaches to Course AI Policies'
+          intro = h.find_next_sibling('p')
+          if intro is None:
+              raise SystemExit('Policy approaches introduction not found')
+          intro.string = ('Faculty may take different approaches to generative AI depending on their course design, assignments, and learning goals. '
+                          'The examples below are starting points that instructors may adapt.')
+          info_boxes = section.find_all('div', class_='info-box')
+          if not info_boxes:
+              raise SystemExit('Policy approaches information box not found')
+          replace_inner(info_boxes[-1], '''
+          <strong>Clarity and Consistency:</strong> These examples represent different approaches faculty may consider. Whatever approach an instructor adopts, expectations should be clearly communicated to students, applied consistently, and aligned with current CT State and CSCU academic integrity guidance.
+          ''')
+
+          # Crafting policy: emphasize permission, acknowledgment, verification
+          h = find_h2('Crafting Your AI Policy')
+          section = h.find_parent('div', class_='section')
+          intro = h.find_next_sibling('p')
+          if intro is None:
+              raise SystemExit('Crafting AI policy introduction not found')
+          intro.string = ('If you address generative AI in your syllabus or assignments, make the expectations concrete enough that students can tell what is permitted, what must be acknowledged, and what they are responsible for verifying.')
+          anchor_box = BeautifulSoup('''
+          <div class="info-box">
+          <strong>Three useful anchors:</strong> <strong>Permission</strong> — explain what kinds of AI use are allowed or not allowed. <strong>Acknowledgment</strong> — explain when and how students should disclose or cite AI assistance. <strong>Verification</strong> — remind students that they remain responsible for checking claims, quotations, sources, citations, and other material produced with AI assistance.
+          </div>
+          ''', 'html.parser').div
+          intro.insert_after(anchor_box)
+
+          # Practical strategies
+          h = find_h2('Practical Strategies')
+          section = h.find_parent('div', class_='section')
+          resistant = None
+          for h4 in section.find_all('h4'):
+              if 'AI-Resistant Assignments' in heading_text(h4):
+                  resistant = h4
+                  break
+          if resistant is None:
+              raise SystemExit('AI-resistant assignment heading not found')
+          resistant.string = 'Design Assignments that Emphasize Student Thinking'
+
+          warning = section.find('div', class_='warning-box')
+          if warning is None:
+              raise SystemExit('AI detection warning box not found')
+          replace_inner(warning, '''
+          <strong>⚠️ AI Detection Requires Caution:</strong> AI-detection scores should not be treated as proof that a student used generative AI. If a submission raises concerns, consider the student’s writing process, prior work, sources, drafts, and other available evidence, and follow the same faculty-first conversation process described on the Policies page.
+          ''')
+
+          # Current resources
+          h = find_h2('Additional Resources')
+          section = h.find_parent('div', class_='section')
+          replace_inner(section, '''
+          <h2>Current AI &amp; Academic Integrity Resources</h2>
+          <p>Because institutional guidance and AI tools continue to change, use current CT State resources when developing or revising course policies.</p>
+          <ul style="padding-left: 40px; margin: 20px 0;">
+          <li><a href="https://ctstate.edu/for-you/faculty-staff">CT State Faculty &amp; Staff Resources</a> — current faculty guidance, forms, and institutional resources.</li>
+          <li><a href="https://library.ctstate.edu/c.php?g=1406992&amp;p=10656285">CT State Library: Using and Citing AI</a> — student-facing guidance on permission, acknowledgment, citation, and verification.</li>
+          <li><a href="https://catalog.ctstate.edu/academic-policies-procedures/expectation-academic-integrity/">CT State Academic Integrity</a> — current academic integrity expectations and procedures.</li>
+          <li><a href="https://ctstate.edu/conduct">CT State Conduct</a> — Student Code of Conduct, academic misconduct information, and referral resources.</li>
+          </ul>
+          ''')
+
+          # Remove decorative icons from headings and non-warning callout labels.
+          for tag in soup.find_all(['h2', 'h3', 'h4']):
+              txt = heading_text(tag)
+              cleaned = re.sub(r'^[^\w]+', '', txt, flags=re.UNICODE).strip()
+              if cleaned and cleaned != txt:
+                  tag.string = cleaned
+          for strong in soup.find_all('strong'):
+              txt = strong.get_text(strip=True)
+              if txt.startswith(('ℹ️', '💡', '✅')):
+                  strong.string = re.sub(r'^[^\w]+', '', txt, flags=re.UNICODE).strip()
+
+          # Increase spacing on this dense page.
+          rendered = str(soup)
+          rendered = rendered.replace('margin: 50px 0 20px 0;', 'margin: 60px 0 24px 0;', 1)
+          rendered = rendered.replace('margin: 35px 0 15px 0;', 'margin: 42px 0 18px 0;', 1)
+          rendered = rendered.replace('margin-bottom: 16px;\n            font-size: 1.05em;', 'margin-bottom: 20px;\n            font-size: 1.05em;', 1)
+
+          path.write_text(rendered, encoding='utf-8')
+          PY
+
+      - name: Validate AI guidance revision
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s = Path('ai-policy.html').read_text(encoding='utf-8')
+          required = [
+              'Artificial Intelligence in ENG 1010 - ENG 1010 Faculty Guide',
+              'AI Guidance for ENG 1010',
+              'AI in the Writing Classroom',
+              'Sample Approaches to Course AI Policies',
+              'Three useful anchors:',
+              'Permission',
+              'Acknowledgment',
+              'Verification',
+              'Design Assignments that Emphasize Student Thinking',
+              'AI Detection Requires Caution',
+              'Current AI &amp; Academic Integrity Resources',
+              'https://ctstate.edu/for-you/faculty-staff',
+              'https://library.ctstate.edu/c.php?g=1406992&amp;p=10656285',
+              'https://catalog.ctstate.edu/academic-policies-procedures/expectation-academic-integrity/',
+              'https://ctstate.edu/conduct',
+              'id="main-content"',
+              'aria-current="page"',
+          ]
+          forbidden = [
+              'Policy Under Development',
+              'CT State is currently developing institution-wide guidance',
+              'There are no easy answers',
+              'individual faculty have flexibility in setting their own course policies',
+              'all of which are legitimate',
+              'AI-Resistant Assignments',
+              'Detection Tools Are Unreliable',
+              'high false positive rates',
+              'Council of Writing Program Administrators',
+              'CCCC Position Statement on AI',
+          ]
+          missing = [x for x in required if x not in s]
+          leftovers = [x for x in forbidden if x in s]
+          if missing or leftovers:
+              raise SystemExit(f'Missing required: {missing}; forbidden leftovers: {leftovers}')
+          print('Approved AI guidance revision validation passed')
+          PY
+
+      - name: Commit clean AI guidance revision
+        run: |
+          rm -f .github/workflows/apply-ai-guidance-revision.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Apply approved AI guidance revision"
+          git push origin HEAD:agent/publishing-ready
