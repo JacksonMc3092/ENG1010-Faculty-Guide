@@ -1,6 +1,39 @@
 (() => {
   'use strict';
 
+  // Match Scholar's Compass chapter typography at the rendered-text level.
+  // This deliberately overrides older page-specific CSS that otherwise shrinks prose to 16px.
+  const typography = document.createElement('style');
+  typography.dataset.fgTypography = 'scholars-compass';
+  typography.textContent = `
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+      font-size: 18px !important;
+      line-height: 1.6 !important;
+    }
+    #main-content p,
+    #main-content li,
+    #main-content td,
+    #main-content th {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+      font-size: 18px !important;
+      line-height: 1.6 !important;
+      font-weight: 400 !important;
+    }
+    #main-content .fg-quick-reference li { font-size: 18px !important; }
+    #main-content .fg-hub-group > p { font-size: 16.5px !important; }
+    #main-content .fg-breadcrumb { font-size: 15px !important; }
+    #main-content .fg-page-nav-label { font-size: 13px !important; }
+    @media (max-width: 520px) {
+      body,
+      #main-content p,
+      #main-content li,
+      #main-content td,
+      #main-content th { font-size: 18px !important; }
+    }
+  `;
+  document.head.appendChild(typography);
+
   const pages = [
     { href: 'index.html', title: 'Faculty Guide Hub', section: 'Home', description: 'Overview, quick reference, and navigation for the ENG 1010 Faculty Guide.' },
     { href: 'getting-started.html', title: 'Getting Started', section: 'Getting Started', description: 'Orientation, mission, guiding principles, and first steps for ENG 1010 faculty.' },
