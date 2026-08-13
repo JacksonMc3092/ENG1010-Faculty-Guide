@@ -1,0 +1,31 @@
+name: Tune Faculty Guide reading presence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tune-reading-presence.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply reading presence tuning
+        run: python3 .publish-tools/tune-reading-presence.py
+      - name: Validate typography tuning
+        run: |
+          grep -q 'FACULTY GUIDE READING PRESENCE' assets/faculty-guide.css
+          grep -q 'font-size: 19px !important' assets/faculty-guide.css
+          grep -q 'font-weight: 500 !important' assets/faculty-guide.css
+      - name: Commit typography tuning
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/tune-reading-presence.yml .publish-tools/tune-reading-presence.py
+          git add assets/faculty-guide.css
+          git commit -m "Increase Faculty Guide reading size and weight"
+          git push
