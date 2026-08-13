@@ -20,19 +20,13 @@ jobs:
 
           title = 'CT State Community College - Three Rivers | English 1010: Composition Faculty Guide'
           note = 'This website is an independent faculty resource and is not an official CT State Community College website. It is provided for reference only.'
-
-          pages = [
-            'index.html','getting-started.html','quick-start.html','course-overview.html','corequisite-model.html',
-            'module-guide.html','assignments.html','instructional-strategies.html','assessment.html',
-            'syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html'
-          ]
-
-          footer = f'<footer><p><strong>{title}</strong></p><p class="fg-footer-disclaimer">{note}</p><p>Last updated: August 2026</p></footer>'
+          pages = ['index.html','getting-started.html','quick-start.html','course-overview.html','corequisite-model.html','module-guide.html','assignments.html','instructional-strategies.html','assessment.html','syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html']
+          footer = f'<footer class="site-footer"><p><strong>{title}</strong></p><p class="fg-footer-disclaimer">{note}</p><p>Last updated: August 2026</p></footer>'
 
           for filename in pages:
             p = Path(filename)
             text = p.read_text(encoding='utf-8')
-            new, count = re.subn(r'<footer>.*?</footer>', footer, text, count=1, flags=re.S|re.I)
+            new, count = re.subn(r'<footer(?:\s+[^>]*)?>.*?</footer>', footer, text, count=1, flags=re.S|re.I)
             if count != 1:
               raise SystemExit(f'Footer replacement failed for {filename}: {count}')
             p.write_text(new, encoding='utf-8')
