@@ -218,3 +218,14 @@ a[target="_blank"]::after {
 #main-content .prompt-box .prompt-text + p {
   margin-top: 1.45rem !important;
 }
+
+
+/* Footer reference disclaimer */
+footer .fg-footer-disclaimer {
+  font-size: .82rem !important;
+  line-height: 1.45 !important;
+  font-weight: 400 !important;
+  opacity: .86;
+  max-width: 760px;
+  margin: 8px auto !important;
+}
