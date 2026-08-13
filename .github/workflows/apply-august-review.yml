@@ -1,0 +1,81 @@
+name: Apply August Faculty Guide review
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare parser
+        run: python -m pip install --quiet beautifulsoup4
+      - name: Apply review batch
+        run: |
+          sed -i 's#assets/site-mark.jpg#assets/site-mark-photo.svg#g' .publish-tools/apply-review-batch.py
+          python .publish-tools/apply-review-batch.py
+      - name: Validate review batch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import re
+
+          pages = ['index.html','getting-started.html','quick-start.html','course-overview.html','corequisite-model.html','module-guide.html','assignments.html','instructional-strategies.html','assessment.html','syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html']
+          for f in pages:
+              p=Path(f)
+              assert p.exists(), f'missing {f}'
+              s=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+              assert s.find('link',href='assets/faculty-review.css'), f'missing review css {f}'
+              img=s.select_one('.fg-mark-image')
+              assert img and img.get('src')=='assets/site-mark-photo.svg', f'banner image {f}'
+              assert s.select_one('.fg-nav-home').get_text(strip=True)=='Home', f'home label {f}'
+              assert s.find('a',href='quick-start.html'), f'quick start nav {f}'
+              text=s.get_text(' ',strip=True)
+              assert not re.search(r'(English|ENG)\s*1010\s+curriculum\s+committee',text,re.I), f'old committee term {f}'
+              for a in s.find_all('a',href=True):
+                  href=a['href']
+                  if href.startswith(('http://','https://')) and 'jacksonmc3092.github.io/ENG1010-Faculty-Guide' not in href:
+                      assert a.get('target')=='_blank', f'external target {f}: {href}'
+
+          c=Path('corequisite-model.html').read_text(encoding='utf-8')
+          assert '3 Credits' in c and 'Credits do not apply toward degree requirements' in c
+          m=Path('module-guide.html').read_text(encoding='utf-8')
+          assert 'Course Planning Guide' in m and 'module-number' not in m and '5-7 pages' in m
+          a=BeautifulSoup(Path('assessment.html').read_text(encoding='utf-8'),'html.parser')
+          assert a.select_one('table.grade-table') and a.select_one('.fg-grade-table-wrap')
+          sy=Path('syllabus-templates.html').read_text(encoding='utf-8')
+          assert 'Three Rivers ENG 1010 Course Expectations' not in sy
+          assert 'Academic Catalog Policy Resources' in sy
+          pol=Path('policies.html').read_text(encoding='utf-8')
+          assert 'Note for Part-Time Faculty:' in pol and 'In Progress' in pol and '61%' in pol
+          co=Path('course-overview.html').read_text(encoding='utf-8')
+          assert 'The following three assignments are recommended for ENG 1010' in co
+          assert 'fg-before-writing-requirements' in co
+          js=Path('assets/faculty-guide.js').read_text(encoding='utf-8')
+          assert 'buildSearchIndex' in js and 'cancellation' in js and "title: 'Course Planning Guide'" in js
+          css=Path('assets/faculty-guide.css').read_text(encoding='utf-8')
+          assert 'font-size: 19px !important' in css and 'font-weight: 500 !important' in css
+          print('August Faculty Guide review validation passed')
+          PY
+      - name: Clean temporary migration files
+        run: |
+          rm -f .publish-tools/apply-review-batch.py .publish-tools/august-batch.0
+          rm -f assets/site-mark.svg
+          rm -f .github/workflows/apply-august-review.yml
+          rmdir .publish-tools 2>/dev/null || true
+      - name: Commit review updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to commit'
+          else
+            git commit -m 'Apply Faculty Guide August review updates'
+            git push
+          fi
