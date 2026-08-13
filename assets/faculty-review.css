@@ -1,0 +1,176 @@
+/* August 2026 faculty review refinements */
+
+/* Banner identity */
+.fg-brand { align-items: center; gap: 16px; }
+.fg-mark-image {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex: 0 0 auto;
+  box-shadow: 0 3px 12px rgba(0,0,0,.18);
+}
+.fg-brand-copy { display: flex; flex-direction: column; }
+.fg-course-line {
+  color: rgba(255,255,255,.86);
+  font-size: .88rem;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: .015em;
+}
+.fg-site-name {
+  margin-top: 3px !important;
+  font-size: 1.72rem !important;
+  line-height: 1.08 !important;
+}
+
+/* Site-wide heading hierarchy and breathing room */
+#main-content h2 {
+  font-size: clamp(1.8rem, 2.5vw, 2.18rem) !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  margin-top: 3.5rem !important;
+  margin-bottom: 1.55rem !important;
+}
+#main-content h3 {
+  font-size: clamp(1.45rem, 2vw, 1.68rem) !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  margin-top: 2.75rem !important;
+  margin-bottom: 1.15rem !important;
+}
+#main-content h4 {
+  font-size: 1.28rem !important;
+  line-height: 1.3 !important;
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+#main-content h5 {
+  font-size: 1.16rem !important;
+  line-height: 1.3 !important;
+  font-weight: 700 !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: .9rem !important;
+}
+#main-content h2 + p,
+#main-content h3 + p,
+#main-content h4 + p,
+#main-content h5 + p,
+#main-content h2 + div,
+#main-content h3 + div,
+#main-content h4 + div,
+#main-content h5 + div { margin-top: .35rem !important; }
+#main-content .content-section,
+#main-content .section,
+#main-content .essay-section { scroll-margin-top: 110px; }
+
+/* Course Overview */
+#main-content .assignment-card h4 {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  flex-wrap: wrap !important;
+}
+#main-content .assignment-badge {
+  margin-left: auto !important;
+  white-space: nowrap !important;
+}
+#main-content .fg-before-writing-requirements { margin-bottom: 3.25rem !important; }
+
+/* Corequisite */
+#main-content .policy-goal h5 { font-size: 1.28rem !important; margin-bottom: 1rem !important; }
+#main-content .scenario-box h5 {
+  font-size: 1.25rem !important;
+  line-height: 1.35 !important;
+  margin: 0 0 1rem !important;
+}
+#main-content .scenario-box { padding-top: 24px !important; padding-bottom: 24px !important; }
+#main-content .highlight-box h4 + p { margin-top: .65rem !important; }
+
+/* Course Planning Guide */
+#main-content .module-number { display: none !important; }
+#main-content .module-title-section { padding-left: 0 !important; }
+#main-content .module-header { gap: 0 !important; }
+#main-content .module-card h3 { margin-top: 0 !important; margin-bottom: .7rem !important; }
+#main-content .module-card h4,
+#main-content .module-card h5 { margin-bottom: 1rem !important; }
+
+/* Assignments */
+#main-content .prompt-box h4 { margin-bottom: 1.15rem !important; }
+#main-content .prompt-text { margin-top: .4rem !important; }
+
+/* Assessment grade standards */
+.fg-grade-table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0 2rem;
+  border: 1px solid var(--fg-border);
+  border-radius: 12px;
+  background: var(--fg-surface);
+}
+#main-content table.grade-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+  margin: 0 !important;
+}
+#main-content table.grade-table th,
+#main-content table.grade-table td {
+  padding: 16px 18px !important;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--fg-border);
+}
+#main-content table.grade-table th {
+  background: var(--fg-surface-2);
+  color: var(--fg-purple);
+  font-weight: 800 !important;
+}
+#main-content table.grade-table tr:last-child td { border-bottom: 0; }
+#main-content table.grade-table td:first-child { width: 18%; white-space: nowrap; }
+#main-content table.grade-table td:nth-child(2) { width: 18%; }
+
+/* Quick Start */
+.fg-quickstart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 20px;
+  margin: 1.5rem 0 2.5rem;
+}
+.fg-quickstart-card {
+  border: 1px solid var(--fg-border);
+  border-radius: 14px;
+  background: var(--fg-surface);
+  padding: 24px;
+}
+.fg-quickstart-card h3 { margin-top: 0 !important; }
+.fg-status {
+  display: inline-block;
+  margin-top: .5rem;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--fg-surface-2);
+  color: var(--fg-muted);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+/* External-link affordance without cluttering internal navigation */
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: .78em;
+  vertical-align: .08em;
+}
+.fg-icon-button::after,
+.nav-link-card::after,
+.btn::after { content: none !important; }
+
+@media (max-width: 700px) {
+  .fg-mark-image { width: 64px; height: 64px; }
+  .fg-course-line { font-size: .78rem; }
+  .fg-site-name { font-size: 1.48rem !important; }
+  .fg-quickstart-grid { grid-template-columns: 1fr; }
+  #main-content .assignment-card h4 { display: block !important; }
+  #main-content .assignment-badge { display: block !important; width: max-content; margin: .75rem 0 0 !important; }
+}
