@@ -571,3 +571,16 @@ html[data-theme="dark"] #main-content a { color: #75ddd4; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Cascade safeguards against legacy inline heading rules. */
+.fg-site-name {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  letter-spacing: .01em !important;
+}
+.fg-site-name::before,
+.fg-site-name::after { display: none !important; content: none !important; }
+.fg-nav-group:focus-within:not(.is-open) .fg-dropdown { display: none; }
+.fg-nav-group.is-open:focus-within .fg-dropdown { display: block; }
