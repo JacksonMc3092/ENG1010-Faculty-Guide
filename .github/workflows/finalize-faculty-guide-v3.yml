@@ -1,0 +1,93 @@
+name: Finalize Faculty Guide v3
+
+on:
+  push:
+    branches: [agent/publishing-ready]
+    paths:
+      - '.github/workflows/finalize-faculty-guide-v3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out publication branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/publishing-ready
+      - name: Install parser
+        run: pip install beautifulsoup4
+      - name: Apply closeout transformations
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import textwrap
+          wf=Path('.github/workflows/finalize-faculty-guide.yml').read_text(encoding='utf-8')
+          code=wf.split("python - <<'PY'\n",1)[1].split("\n          PY",1)[0]
+          exec(compile(textwrap.dedent(code),'finalize-transforms','exec'),{'__name__':'__main__'})
+
+          # Correct Getting Started mission block and equity wording.
+          p=Path('getting-started.html'); soup=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+          for st in soup.find_all('strong'):
+              if 'English Department Mission' in st.get_text(' ',strip=True) or 'First-Year Writing Task Force Mission' in st.get_text(' ',strip=True):
+                  par=st.find_parent('p'); par.clear(); ns=soup.new_tag('strong'); ns.string='First-Year Writing Task Force Mission:'; par.append(ns); par.append(' The First-Year Writing Task Force at CT State - Three Rivers is committed to fostering critical thinking, effective communication, and cultural literacy. Through the study of literature, composition, and language, we prepare students to engage meaningfully with diverse texts and ideas, express themselves clearly and persuasively, and participate actively as informed citizens in a global society.'); break
+          for h in soup.find_all(['h2','h3','h4']):
+              if h.get_text(' ',strip=True)=='Equity and Access':
+                  pp=h.find_next('p')
+                  if pp: pp.string='Students enter ENG 1010 with different educational experiences, responsibilities, and levels of preparation. Equity does not mean lowering the shared course outcomes; it means creating clear and accessible pathways for students to reach them. Thoughtful scaffolding, transparent expectations, accessible course materials, and opportunities for practice and revision can help students engage fully with college-level reading and writing.'
+          p.write_text(str(soup),encoding='utf-8')
+
+          # Correct assignment summary cards that store page ranges separately from the word "pages".
+          p=Path('assignments.html'); soup=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+          for card in soup.select('.requirement-card'):
+              h=card.find('h3'); pc=card.select_one('.page-count')
+              if not h or not pc: continue
+              if h.get_text(' ',strip=True)=='Essay 2': pc.string='5-7'
+              if h.get_text(' ',strip=True)=='Essay 3': pc.string='6-8'
+          p.write_text(str(soup),encoding='utf-8')
+          PY
+      - name: Final 12-page audit
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          files=['index.html','getting-started.html','course-overview.html','corequisite-model.html','module-guide.html','assignments.html','instructional-strategies.html','assessment.html','syllabus-templates.html','policies.html','ai-policy.html','faculty-support.html']
+          errors=[]; parsed={}
+          for name in files:
+              raw=Path(name).read_text(encoding='utf-8'); soup=BeautifulSoup(raw,'html.parser'); text=soup.get_text(' ',strip=True); parsed[name]=(soup,text)
+              if not soup.find(id='main-content'): errors.append(f'{name}: missing main-content')
+              if not soup.find('a',href='#main-content'): errors.append(f'{name}: missing skip link')
+              if not soup.find('a',attrs={'aria-current':'page'}): errors.append(f'{name}: missing aria-current')
+              if 'CEO' in text or 'Chief Executive Officer' in text: errors.append(f'{name}: obsolete CEO title')
+              if 'Last updated: August 2026' not in text: errors.append(f'{name}: footer not normalized')
+              for a in soup.find_all('a',href=True):
+                  href=a['href'].split('#')[0].split('?')[0]
+                  if href.endswith('.html') and not Path(href).exists(): errors.append(f'{name}: missing local link {href}')
+              if any(h.find('i') for h in soup.find_all(['h2','h3','h4'])): errors.append(f'{name}: decorative heading icon remains')
+          checks={'index.html':['About the CT State - Three Rivers ENG 1010 Faculty Guide','4 outcome areas covering rhetorical situations'],'getting-started.html':['Welcome to ENG 1010','First-Year Writing Task Force Mission','Email your syllabus to the department chair and the dean'],'course-overview.html':['Composition focuses on the study and practice of effective written communication','Curriculum Leader or Department Chair','required text and/or supplemental readings'],'corequisite-model.html':['Current Placement Criteria','2.8 or higher','250–262'],'module-guide.html':['planning resource, not a required sequence','Suggested Weeks'],'assignments.html':['at least 20 pages of finished formal writing','Planning Note:','5-7 pages','6-8 pages'],'instructional-strategies.html':['Teaching Approaches'],'assessment.html':['Assessment Approaches','Portfolio Assessment: An Optional Approach'],'syllabus-templates.html':['Syllabus Guidance'],'policies.html':['Ronda.Charette@ctstate.edu','MUST be submitted'],'ai-policy.html':['AI Guidance for ENG 1010','Permission','AI Detection Requires Caution'],'faculty-support.html':['Faculty Support & Resources','Tutoring and Academic Success Center','Center for Teaching','Help Improve This Guide']}
+          forbidden={'corequisite-model.html':['ENG 101S','Guided Self-Placement','2023-2024 Placement Criteria'],'module-guide.html':['Assignment Period'],'assignments.html':['three formal essays totaling at least 20 pages','7-9 pages','5-6 pages'],'assessment.html':['Labor-Based Grading'],'ai-policy.html':['Policy Under Development'],'faculty-support.html':['ACME English Leads','Mandatory for new faculty',"You can't pour from an empty cup"]}
+          for name,vals in checks.items():
+              text=parsed[name][1]
+              for v in vals:
+                  if v not in text: errors.append(f'{name}: missing approved marker: {v}')
+          for name,vals in forbidden.items():
+              text=parsed[name][1]
+              for v in vals:
+                  if v in text: errors.append(f'{name}: stale text remains: {v}')
+          if errors:
+              print('\n'.join('ERROR: '+e for e in errors)); raise SystemExit(1)
+          print('FINAL AUDIT PASSED: all 12 core pages validated for locked content, terminology, local links, accessibility hooks, heading-icon cleanup, and August 2026 footers.')
+          PY
+      - name: Commit finalized publication branch
+        run: |
+          rm -f .github/workflows/finalize-faculty-guide.yml .github/workflows/finalize-faculty-guide-v2.yml .github/workflows/finalize-faculty-guide-v3.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Finalize ENG 1010 Faculty Guide content review"
+          git push origin HEAD:agent/publishing-ready
