@@ -1,0 +1,34 @@
+name: Assemble ENG 1010 sample syllabus
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble and validate Word syllabus
+        run: |
+          mkdir -p downloads
+          cat .tmp-syllabus/part01 .tmp-syllabus/part02 .tmp-syllabus/part03 .tmp-syllabus/part04 .tmp-syllabus/part05 .tmp-syllabus/part06 .tmp-syllabus/part07 > downloads/ENG1010_Sample_Syllabus_Fall_2026.docx
+          echo "dcacfb151a40ef03edb103870a74064430cd6ab8edf346e0e0fad5160115a320  downloads/ENG1010_Sample_Syllabus_Fall_2026.docx" | sha256sum -c -
+          unzip -t downloads/ENG1010_Sample_Syllabus_Fall_2026.docx
+          test -f resources/ENG1010_7-Week_Course_Plan.html
+          grep -q 'downloads/ENG1010_Sample_Syllabus_Fall_2026.docx' quick-start.html
+          grep -q 'resources/ENG1010_7-Week_Course_Plan.html' quick-start.html
+      - name: Remove temporary assembly files
+        run: |
+          rm -rf .tmp-syllabus
+          rm -f .github/workflows/assemble-eng1010-syllabus.yml
+      - name: Commit resources
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Publish ENG 1010 Quick Start resources'
+          git push
