@@ -1,4 +1,4 @@
-name: Assemble ENG 1010 sample syllabus
+name: Build ENG 1010 sample syllabus
 
 on:
   push:
@@ -8,15 +8,22 @@ permissions:
   contents: write
 
 jobs:
-  assemble:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble and validate Word syllabus
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+      - name: Build and validate Word syllabus
         run: |
           mkdir -p downloads
-          cat .tmp-syllabus/part01 .tmp-syllabus/part02 .tmp-syllabus/part03 .tmp-syllabus/part04 .tmp-syllabus/part05 .tmp-syllabus/part06 .tmp-syllabus/part07 > downloads/ENG1010_Sample_Syllabus_Fall_2026.docx
-          echo "dcacfb151a40ef03edb103870a74064430cd6ab8edf346e0e0fad5160115a320  downloads/ENG1010_Sample_Syllabus_Fall_2026.docx" | sha256sum -c -
+          pandoc source/ENG1010_Sample_Syllabus_Fall_2026.html \
+            --from=html \
+            --to=docx \
+            --output=downloads/ENG1010_Sample_Syllabus_Fall_2026.docx
+          test -s downloads/ENG1010_Sample_Syllabus_Fall_2026.docx
           unzip -t downloads/ENG1010_Sample_Syllabus_Fall_2026.docx
           test -f resources/ENG1010_7-Week_Course_Plan.html
           grep -q 'downloads/ENG1010_Sample_Syllabus_Fall_2026.docx' quick-start.html
@@ -30,5 +37,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Publish ENG 1010 Quick Start resources'
+          git commit -m 'Publish ENG 1010 Quick Start syllabus'
           git push
