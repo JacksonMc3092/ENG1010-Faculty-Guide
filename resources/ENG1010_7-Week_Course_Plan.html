@@ -1,461 +1,156 @@
-<!DOCTYPE html>
-
-<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/>
-<meta content="pandoc" name="generator"/>
-<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
-<title>ENG 1010 Seven-Week Course Plan</title>
-<style>
-    html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    svg {
-      height: auto;
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-<style>
-:root { color-scheme: light; }
-body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif; color:#182c3c; background:white; max-width: 900px; margin: 0 auto; padding: 28px 26px 52px; line-height:1.55; font-size:17px; }
-h1,h2,h3 {color:#17446d; line-height:1.25; margin-top:1.5em} h1 {font-size:2rem;margin-top:0} h2 {font-size:1.42rem; border-bottom:1px solid #dae4ea; padding-bottom:.32em} h3{font-size:1.14rem}
-p{margin:.6em 0;} ul,ol{padding-left:1.5em;} li{margin:.3em 0}
-table{border-collapse:collapse; width:100%; margin:16px 0; font-size:.94rem; overflow-wrap:break-word}
-th,td{border:1px solid #d1dbe3; text-align:left; vertical-align:top; padding:9px 10px;}th{background:#e8f0f6;color:#123c5d}
-tr:nth-child(even) td{background:#f7f9fb}
-a{color:#145ca4} blockquote{border-left:3px solid #a7b9c8; padding-left:14px; margin-left:4px}
-@media(max-width:620px){body{padding:16px 12px;font-size:16px}table{font-size:.82rem}th,td{padding:6px}}
-@media print {body {max-width:none;padding:0;color:black;font-size:11pt} h2 {break-after:avoid} tr {break-inside:avoid}}
-</style></head>
-<body>
-<h1 id="eng-1010-composition">ENG 1010: Composition</h1>
-<p>Seven-week adjunct starter packet • Fall 2026, Session II (7B)</p>
-<p><strong>Suggested theme:</strong> What’s College For? Education, Opportunity, and Belonging</p>
-<p><strong>Course format:</strong> Two 150-minute meetings each week; meeting dates below assume Tuesday/Thursday.</p>
-<p><strong>Required text:</strong> Graff et al., They Say / I Say with Readings, 6th ed. (Norton, 2024); ISBN 9781324070139.</p>
-<p><strong>Dates:</strong> Thursday, October 22–Tuesday, December 15, 2026.</p>
-<h2 id="welcome">Welcome</h2>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ENG 1010 | Adjunct Starter Packet | Mon/Wed Fall 2026</title><style>
+:root{color-scheme:light}html{scroll-behavior:smooth}body{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:#fff;color:#1e293b;font-size:17px;line-height:1.55;max-width:920px;margin:0 auto;padding:1.5rem 1.25rem 4rem}h1{font-size:1.65rem;color:#16385c;border-bottom:2px solid #dbe6ef;padding-bottom:.3rem;margin:2.5rem 0 .8rem}h1:first-child{margin-top:.3rem}h2{font-size:1.3rem;color:#20476a;margin:2rem 0 .55rem}h3{font-size:1.05rem;color:#195479;margin:1.2rem 0 .3rem}p{margin:.45rem 0 .9rem}ul{padding-left:1.6rem}li{margin:.35rem 0}a{color:#065c99}table{width:100%;border-collapse:collapse;margin:1rem 0 1.3rem;font-size:.91rem}th,td{padding:.55rem .7rem;border:1px solid #d7e0e8;text-align:left;vertical-align:top}th{background:#e7eff5;color:#173d59}tr:nth-child(even) td{background:#f7f9fb}.meeting{border-top:1px solid #dce5ed;padding-top:.65rem} @media(max-width:650px){body{font-size:16px;padding:1rem}table{display:block;overflow-x:auto;font-size:.82rem}h1{font-size:1.4rem}h2{font-size:1.16rem}}@media print{body{max-width:none;font-size:11pt;padding:0}table{break-inside:avoid}h1,h2,h3{break-after:avoid}}
+</style></head><body><h1>ENG 1010: Composition</h1>
+<p>Seven-week adjunct starter packet  •  Fall 2026, Session II (7B)</p>
+<p><strong>Suggested theme: </strong>What’s College For? Education, Opportunity, and Belonging</p>
+<p><strong>Course format: </strong>Two 150-minute meetings each week, Mondays and Wednesdays (seven instructional weeks).</p>
+<p><strong>Required text: </strong>Graff et al., They Say / I Say with Readings, 6th ed. (Norton, 2024); ISBN 9781324070139.</p>
+<p><strong>Dates: </strong>First class Monday, October 26; last class Monday, December 14, 2026. The official 7B session ends Tuesday, December 15.</p>
+<h2>Welcome</h2>
 <p>This is one approach to the course, not a prescribed one. It offers a reading path through the sixth edition of <em>They Say / I Say with Readings</em>, a complete sequence of class meetings, and assignments that can be adapted. Keep the activities you like; replace readings, themes, and prompts as needed while preserving opportunities for critical reading, argument, source use, and revision.</p>
 <p>This particular model uses the anthology’s “What’s College For?” readings as one conversation: students analyze how an author makes an argument, synthesize different views of higher education, and then research a focused question that grows from the readings. The major essays are due in instructional Weeks 3, 5, and 7. Reading, drafting, feedback, and revision overlap across units.</p>
-<h2 id="a-note-about-checkmarks">A note about “Checkmarks”</h2>
+<h2>A note about “Checkmarks”</h2>
 <p>Checkmarks is simply the name I use for low-stakes reading and writing activities. They can be assigned as homework or done during class. A Checkmark might ask students to annotate a passage, test a thesis, connect two readings, or gather evidence for an essay. I sometimes have students complete some Checkmarks in small groups when appropriate. They are not a required college-wide assignment type; feel free to rename, adjust, combine, or omit them. Their purpose is to give students practice and help them make progress toward larger projects.</p>
-<h2 id="where-to-start">Where to start</h2>
+<h2>Where to start</h2>
 <ul>
-<li><p>Read the ENG 1010 Faculty Guide for the course outcomes, sample assignments, assessment guidance, and campus resources.</p></li>
-<li><p>Read the introduction and a few selected writing-moves chapters of They Say / I Say; then choose the anthology essays you want students to work with.</p></li>
-<li><p>Post a simple Blackboard course shell once you have access and add the calendar and syllabus. Give Essay 1 to students in the first few meetings.</p></li>
-<li><p>Check the 7B academic engagement deadlines; students need an opportunity to complete documented academic work early.</p></li>
+<li>Read the ENG 1010 Faculty Guide for the course outcomes, sample assignments, assessment guidance, and campus resources. (<em>Note: the faculty guide linked below is in draft form but it can be helpful as you begin to plan your course</em>)</li>
+<li>Read the introduction and a few selected writing-moves chapters of They Say / I Say; then choose the anthology essays you want students to work with.</li>
+<li>Post a simple Blackboard course shell once you have access and add the calendar and syllabus. Give Essay 1 to students in the first few meetings.</li>
+<li>Check the 7B academic engagement deadlines; students need an opportunity to complete documented academic work early.</li>
 </ul>
-<p>Faculty Guide: <a href="https://jacksonmc3092.github.io/ENG1010-Faculty-Guide/index.html"><u>ENG 1010 Faculty Guide</u></a></p>
-<p>Official calendar: <a href="https://ctstate.edu/academics/academic-calendar"><u>CT State Academic Calendar</u></a></p>
-<h1 id="the-seven-instructional-weeks">The seven instructional weeks</h1>
-<p>The 7B course dates span parts of eight calendar weeks. The model has 14 Tuesday/Thursday meetings: November 3 and November 26 are no-class dates. For planning purposes, the meetings below are grouped into seven instructional weeks.</p>
+<p>Faculty Guide: <a href="https://jacksonmc3092.github.io/ENG1010-Faculty-Guide/index.html">ENG 1010 Faculty Guide</a></p>
+<p>Official calendar: <a href="https://ctstate.edu/academics/academic-calendar">CT State Academic Calendar</a></p>
+<h1>The seven instructional weeks</h1>
+<p>Fall 7B officially runs October 22–December 15. This Monday/Wednesday section meets October 26–December 14, with 14 meetings grouped into seven instructional weeks. There is no class Wednesday, November 25 (Thanksgiving recess). Classes are held Wednesday, November 11 (Veterans Day).</p>
 <table>
-<colgroup>
-<col style="width: 22%"/>
-<col style="width: 77%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Instructional week</strong></th>
-<th><strong>Focus and milestones</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>1 · Oct 22–Nov 1</strong></td>
-<td>Launch; writing as conversation; close reading and claims. Meetings 1–3.</td>
-</tr>
-<tr class="even">
-<td><strong>2 · Nov 2–8</strong></td>
-<td>Analyze an assigned argument and draft Essay 1. Meeting 4. Nov 3: no class.</td>
-</tr>
-<tr class="odd">
-<td><strong>3 · Nov 9–15</strong></td>
-<td>Revise Essay 1; connect perspectives across texts. Meetings 5–6. Essay 1 final: Nov 12.</td>
-</tr>
-<tr class="even">
-<td><strong>4 · Nov 16–22</strong></td>
-<td>Synthesis and argument workshop. Meetings 7–8. Essay 2 draft: Nov 19.</td>
-</tr>
-<tr class="odd">
-<td><strong>5 · Nov 23–29</strong></td>
-<td>Finish Essay 2; begin a focused research question from course readings. Meeting 9. Essay 2 final: Nov 24; Thanksgiving recess follows.</td>
-</tr>
-<tr class="even">
-<td><strong>6 · Nov 30–Dec 6</strong></td>
-<td>Research, source evaluation, evidence log, partial draft. Meetings 10–11.</td>
-</tr>
-<tr class="odd">
-<td><strong>7 · Dec 7–15</strong></td>
-<td>Full draft, peer review, substantial revision, reflection. Meetings 12–14. Essay 3 final: Dec 15.</td>
-</tr>
-</tbody>
+<tr><th>Instructional week</th><th>Focus and milestones</th></tr>
+<tr><td>1 · Oct 26–Nov 1</td><td>Launch; writing as conversation; close reading and claims. Meetings 1–2: Oct 26, 28.</td></tr>
+<tr><td>2 · Nov 2–8</td><td>Analyze an assigned argument and draft Essay 1. Meetings 3–4: Nov 2, 4.</td></tr>
+<tr><td>3 · Nov 9–15</td><td>Revise Essay 1; connect perspectives across texts. Meetings 5–6: Nov 9, 11. Essay 1 final: Wed, Nov 11 (Veterans Day; classes held).</td></tr>
+<tr><td>4 · Nov 16–22</td><td>Synthesis and argument workshop. Meetings 7–8: Nov 16, 18. Essay 2 rough draft: Wed, Nov 18.</td></tr>
+<tr><td>5 · Nov 23–29</td><td>Essay 2 final: Mon, Nov 23 (Meeting 9); launch research. No class Wed, Nov 25 (Thanksgiving recess).</td></tr>
+<tr><td>6 · Nov 30–Dec 6</td><td>Research, source evaluation, evidence log, partial draft. Meetings 10–11: Nov 30, Dec 2.</td></tr>
+<tr><td>7 · Dec 7–15</td><td>Full draft, peer review, revision, reflection. Meetings 12–14: Dec 7, 9, 14. Essay 3 and reflection final: Tue, Dec 15 (online).</td></tr>
 </table>
-<h2 id="dates-the-adjunct-should-know">Dates the adjunct should know</h2>
-<p>October 26 — last day to add or drop with 100% refund for 7B. October 30 — student academic engagement deadline. November 3 — Reading Day; no classes. November 4 — faculty academic engagement reporting deadline. November 25–29 — Thanksgiving recess; no classes. November 30 — last day to withdraw from 7B. December 15 — last day of 7B. December 21 (noon) — final grades due. Verify all procedures against current CT State notices.</p>
-<h1 id="how-to-use-they-say-i-say">How to use They Say / I Say</h1>
+<h2>Dates the adjunct should know</h2>
+<p>October 26 — first meeting and 7B add/drop deadline (100% refund). October 30 — student academic engagement deadline. November 3 — Reading Day (Tuesday, does not affect this section). November 4 — faculty academic engagement reporting deadline. November 11 — Veterans Day (classes held). November 25–29 — Thanksgiving recess. November 30 — 7B withdrawal deadline. December 14 — final classroom meeting. December 15 — official end of 7B; final submissions. December 21 (noon) — final grades due. Check current CT State notices.</p>
+<h1>How to use They Say / I Say</h1>
 <p>The book works well as a collection of writing moves rather than a chapter-by-chapter survey. Pair a short lesson or template exercise with an anthology reading and a task students can try in their own writing. Treat templates as tools students can adapt, not fixed formulas. Revisit the same chapters during drafting and revision.</p>
 <table>
-<colgroup>
-<col style="width: 22%"/>
-<col style="width: 77%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Teaching purpose</strong></th>
-<th><strong>Chapters to draw on</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Start and analyze</strong></td>
-<td>Introduction; Ch. 1 (“They Say”), Ch. 2 (summarizing), Ch. 3 (quoting), Ch. 14 (reading for the conversation).</td>
-</tr>
-<tr class="even">
-<td><strong>Respond and synthesize</strong></td>
-<td>Ch. 4 (ways to respond), Ch. 5 (distinguishing voices), Ch. 6 (naysayers), Ch. 8 (why it matters), Ch. 9 (connections).</td>
-</tr>
-<tr class="odd">
-<td><strong>Research and revise</strong></td>
-<td>Ch. 15 (research as conversation), Ch. 12 (substantial revision); revisit Ch. 3 for quoting and source integration.</td>
-</tr>
-</tbody>
+<tr><th>Teaching purpose</th><th>Chapters to draw on</th></tr>
+<tr><td>Start and analyze</td><td>Introduction; Ch. 1 (“They Say”), Ch. 2 (summarizing), Ch. 3 (quoting), Ch. 14 (reading for the conversation).</td></tr>
+<tr><td>Respond and synthesize</td><td>Ch. 4 (ways to respond), Ch. 5 (distinguishing voices), Ch. 6 (naysayers), Ch. 8 (why it matters), Ch. 9 (connections).</td></tr>
+<tr><td>Research and revise</td><td>Ch. 15 (research as conversation), Ch. 12 (substantial revision); revisit Ch. 3 for quoting and source integration.</td></tr>
 </table>
-<h2 id="suggested-anthology-reading-set-chapter-23-whats-college-for">Suggested anthology reading set: Chapter 23, “What’s College For?”</h2>
+<h2>Suggested anthology reading set: Chapter 23, “What’s College For?”</h2>
 <p>These seven readings form one conversation; the instructor can select a different topic cluster. Page ranges below refer to the sixth edition with Readings (2024), not the shorter edition or later editions.</p>
 <table>
-<colgroup>
-<col style="width: 25%"/>
-<col style="width: 48%"/>
-<col style="width: 25%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Author</strong></th>
-<th><strong>Reading</strong></th>
-<th><strong>Pages</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gerald Graff</td>
-<td>“Hidden Intellectualism”</td>
-<td>606–613</td>
-</tr>
-<tr class="even">
-<td>Mike Rose</td>
-<td>“Community College: The Great Equalizer?”</td>
-<td>589–598</td>
-</tr>
-<tr class="odd">
-<td>Anna Clark</td>
-<td>“Why We Need to Keep the ‘Community’ in Community Colleges”</td>
-<td>599–605</td>
-</tr>
-<tr class="even">
-<td>Yael Lenga</td>
-<td>“Disability in Higher Education: Building Access and Building Futures”</td>
-<td>566–577</td>
-</tr>
-<tr class="odd">
-<td>Sylvia Mathews Burwell</td>
-<td>“Generation Stress: The Mental Health Crisis on Campus”</td>
-<td>578–588</td>
-</tr>
-<tr class="even">
-<td>Charles Fain Lehman</td>
-<td>“The Student Loan Trap: When Debt Delays Life”</td>
-<td>614–624</td>
-</tr>
-<tr class="odd">
-<td>Anna Gifty Opoku-Agyeman and Fenaba Addo</td>
-<td>“Student Loan Forgiveness Critics Are Wrong about Who Benefits and Why”</td>
-<td>625–632</td>
-</tr>
-</tbody>
+<tr><th>Author</th><th>Reading</th><th>Pages</th></tr>
+<tr><td>Gerald Graff</td><td>“Hidden Intellectualism”</td><td>606–613</td></tr>
+<tr><td>Mike Rose</td><td>“Community College: The Great Equalizer?”</td><td>589–598</td></tr>
+<tr><td>Anna Clark</td><td>“Why We Need to Keep the ‘Community’ in Community Colleges”</td><td>599–605</td></tr>
+<tr><td>Yael Lenga</td><td>“Disability in Higher Education: Building Access and Building Futures”</td><td>566–577</td></tr>
+<tr><td>Sylvia Mathews Burwell</td><td>“Generation Stress: The Mental Health Crisis on Campus”</td><td>578–588</td></tr>
+<tr><td>Charles Fain Lehman</td><td>“The Student Loan Trap: When Debt Delays Life”</td><td>614–624</td></tr>
+<tr><td>Anna Gifty Opoku-Agyeman and Fenaba Addo</td><td>“Student Loan Forgiveness Critics Are Wrong about Who Benefits and Why”</td><td>625–632</td></tr>
 </table>
 <p>Short on time? Graff and Rose work well for the first close-reading assignment; Clark, Lenga, or Burwell can extend the conversation for synthesis. Lehman and Opoku-Agyeman/Addo offer a useful paired debate on educational debt for the research unit. The full set is a choice, not a reading quota.</p>
-<h1 id="fourteen-meeting-teaching-calendar-example">Fourteen-meeting teaching calendar example</h1>
-<p>Each meeting includes suggested preparation, class work, and a concrete writing move. Activities can be reassigned as homework, completed together, or swapped for other texts. Suggested due dates are aligned to the presumed Tuesday/Thursday meeting pattern.</p>
-<h2 id="week-1-course-launch-and-analysis">Week 1 · Course launch and analysis</h2>
-<h3 id="thu-oct-22-entering-a-conversation">01 | Thu, Oct 22 — Entering a conversation</h3>
-<p><strong>Prepare:</strong> Introduction (assigned after class); short instructor-selected excerpt or question about the purpose of college.</p>
-<p><strong>In class:</strong> Orient students to course and Blackboard. Begin with a low-pressure written response: what counts as learning, and where does it happen? Model how a writer starts with a shared belief and responds to it. Let students test one “they say / I say” pair in groups.</p>
-<p><strong>Writing / next step:</strong> Checkmark 1: introductory writing / response; collect during class to document early engagement.</p>
-<h3 id="tue-oct-27-reading-like-a-writer">02 | Tue, Oct 27 — Reading like a writer</h3>
-<p><strong>Prepare:</strong> Ch. 1; Graff, “Hidden Intellectualism” (606–613); selected Ch. 14 guidance.</p>
-<p><strong>In class:</strong> Practice annotation, distinguish Graff’s central claim from his examples, and identify an assumption he challenges. Discuss the audience he addresses and how he tries to persuade that audience. Introduce Essay 1: analysis of an argument in “Hidden Intellectualism” or Rose’s essay.</p>
-<p><strong>Writing / next step:</strong> Mark one passage where Graff challenges a common belief about intellectual ability. After reading Rose, choose which essay to analyze.</p>
-<h3 id="thu-oct-29-from-noticing-to-a-working-thesis">03 | Thu, Oct 29 — From noticing to a working thesis</h3>
-<p><strong>Prepare:</strong> Ch. 2; Rose, “Community College: The Great Equalizer?” (589–598).</p>
-<p><strong>In class:</strong> Compare how Graff and Rose frame intellectual ability and educational opportunity. Practice accurate summary, then ask how each writer uses examples, contrasts, or assumptions to make an argument. Students choose Graff or Rose for Essay 1 and test two analytical thesis statements.</p>
-<p><strong>Writing / next step:</strong> Checkmark 2: Essay 1 planning notes (chosen essay, author’s argument, intended audience, two passages worth analyzing, working thesis).</p>
-<h2 id="week-2-drafting-and-evidence">Week 2 · Drafting and evidence</h2>
-<h3 id="thu-nov-5-developing-analytical-paragraphs">04 | Thu, Nov 5 — Developing analytical paragraphs</h3>
-<p><strong>Prepare:</strong> Ch. 3; reread the passages selected from Graff or Rose. Nov 3 is Reading Day (no class).</p>
-<p><strong>In class:</strong> Practice introducing and explaining quotations. Model the difference between stating what a writer argues and analyzing how the writer makes the case. Have students develop a body paragraph about a specific rhetorical choice or use of evidence. Run an Essay 1 draft workshop and focused peer review.</p>
-<p><strong>Writing / next step:</strong> Checkmark 3: two passages from Graff or Rose with notes explaining what each passage does in the author’s argument. Essay 1 rough draft for review.</p>
-<h2 id="week-3-essay-1-final-synthesis-begins">Week 3 · Essay 1 final; synthesis begins</h2>
-<h3 id="tue-nov-10-revision-and-first-synthesis-moves">05 | Tue, Nov 10 — Revision and first synthesis moves</h3>
-<p><strong>Prepare:</strong> Ch. 4; Clark, “Why We Need to Keep the ‘Community’ in Community Colleges” (599–605).</p>
-<p><strong>In class:</strong> Begin with an Essay 1 revision clinic (thesis, passages, explanation). Compare Clark’s emphasis on “community” with Rose’s account of opportunity and Graff’s view of intellectual life. Ask how a writer can extend or complicate an earlier claim. Introduce Essay 2: What should a college provide to make opportunity meaningful?</p>
-<p><strong>Writing / next step:</strong> Finish Essay 1 revisions; bring a question connecting two authors.</p>
-<h3 id="thu-nov-12-whose-perspectives-are-missing">06 | Thu, Nov 12 — Whose perspectives are missing?</h3>
-<p><strong>Prepare:</strong> Ch. 5; Lenga, “Disability in Higher Education” (566–577).</p>
-<p><strong>In class:</strong> Collect Essay 1 final. Discuss educational access and institutional assumptions without requiring personal disclosure. Connect Lenga to Clark, Rose, or Graff: what might each author say the others overlook? Develop an “I say” that responds to a real point of tension in two sources.</p>
-<p><strong>Writing / next step:</strong> Essay 1 final draft. Start Essay 2 source-conversation notes.</p>
-<h2 id="week-4-synthesis-and-argument">Week 4 · Synthesis and argument</h2>
-<h3 id="tue-nov-17-an-argument-with-a-reasonable-complication">07 | Tue, Nov 17 — An argument with a reasonable complication</h3>
-<p><strong>Prepare:</strong> Ch. 6 and Ch. 8; Burwell, “Generation Stress” (578–588).</p>
-<p><strong>In class:</strong> Use Burwell alongside Rose, Clark, and Lenga to consider what colleges should provide beyond admission or classes. Group readings by shared issues (access, belonging, support, intellectual growth). Workshop an arguable Essay 2 thesis, a reasonable objection, and an explanation of why the question matters.</p>
-<p><strong>Writing / next step:</strong> Checkmark 4: source-conversation chart, working claim, and one complication.</p>
-<h3 id="thu-nov-19-synthesis-workshop">08 | Thu, Nov 19 — Synthesis workshop</h3>
-<p><strong>Prepare:</strong> Ch. 9 (selected); revisit Ch. 3 as needed.</p>
-<p><strong>In class:</strong> Model a synthesis paragraph combining evidence from two writers. Compare author-by-author and idea-based outlines. Hold peer review focused on thesis, source relationships, paragraph development, and what readers still need explained. End with time for a revision plan.</p>
-<p><strong>Writing / next step:</strong> Essay 2 rough draft and peer review; revise for Nov 24.</p>
-<h2 id="week-5-essay-2-final-research-begins">Week 5 · Essay 2 final; research begins</h2>
-<h3 id="tue-nov-24-finish-the-conversation-begin-an-inquiry">09 | Tue, Nov 24 — Finish the conversation; begin an inquiry</h3>
-<p><strong>Prepare:</strong> Ch. 15 (opening sections); Lehman, “The Student Loan Trap” (614–624).</p>
-<p><strong>In class:</strong> Collect Essay 2 final. Introduce Essay 3: a research-supported argument about a focused question arising from the course conversation about education and opportunity. Use Lehman’s discussion of student debt to demonstrate the move from a published argument to a researchable question. Begin a library or database search demonstration.</p>
-<p><strong>Writing / next step:</strong> Essay 2 final draft. Identify a possible research issue or question and the course reading that sparked it. No class Nov 26.</p>
-<h2 id="week-6-inquiry-and-evidence">Week 6 · Inquiry and evidence</h2>
-<h3 id="tue-dec-1-what-counts-as-useful-research">10 | Tue, Dec 1 — What counts as useful research?</h3>
-<p><strong>Prepare:</strong> Opoku-Agyeman and Addo, “Student Loan Forgiveness Critics Are Wrong…” (625–632); Ch. 15.</p>
-<p><strong>In class:</strong> Compare how Lehman and Opoku-Agyeman/Addo frame student debt and support their positions. Practice evaluating claims, counterarguments, and evidence. Use library sources to investigate a narrower related question. Students may choose other education-related issues, or another approved topic if it supports the course outcomes.</p>
-<p><strong>Writing / next step:</strong> Checkmark 5: focused question, a relevant course reading, and an initial log of two possible outside sources with notes on their usefulness.</p>
-<h3 id="thu-dec-3-gathering-evidence-and-building-the-draft">11 | Thu, Dec 3 — Gathering evidence and building the draft</h3>
-<p><strong>Prepare:</strong> Ch. 3 and Ch. 15 (review); student-selected sources.</p>
-<p><strong>In class:</strong> Workshop course readings, outside research, and relevant evidence together. Practice signal phrases, quotation, paraphrase, and MLA citation. Test a tentative answer to the research question and develop at least two body paragraphs. Use brief conferences to discuss argument, scope, or source gaps.</p>
-<p><strong>Writing / next step:</strong> Checkmark 6: evidence log with four to six quotations, paraphrases, facts, or examples from course and outside sources, noting how each supports or complicates the argument. Essay 3 partial draft.</p>
-<h2 id="week-7-essay-3-draft-revision-reflection">Week 7 · Essay 3 draft, revision, reflection</h2>
-<h3 id="tue-dec-8-from-partial-draft-to-full-argument">12 | Tue, Dec 8 — From partial draft to full argument</h3>
-<p><strong>Prepare:</strong> Ch. 12 (revision); no heavy new anthology reading.</p>
-<p><strong>In class:</strong> Run a full-draft workshop: reverse outline, mark unsupported claims, and ask whether the course readings and outside research genuinely speak to one another. Peer exchange should surface questions a thoughtful reader might raise. Confer with writers whose claim or scope is still unsettled.</p>
-<p><strong>Writing / next step:</strong> Essay 3 complete rough draft.</p>
-<h3 id="thu-dec-10-revision-with-readers-in-mind">13 | Thu, Dec 10 — Revision with readers in mind</h3>
-<p><strong>Prepare:</strong> Ch. 12 (review); draft and rubric.</p>
-<p><strong>In class:</strong> Hold the major peer-review workshop. Prioritize thesis, idea-based organization, integration of assigned and outside sources, and explanation of evidence before sentence editing. Students write a short plan naming two or three changes and begin making them.</p>
-<p><strong>Writing / next step:</strong> Peer review and revision plan (not a new major assignment).</p>
-<h3 id="tue-dec-15-completing-and-reflecting">14 | Tue, Dec 15 — Completing and reflecting</h3>
-<p><strong>Prepare:</strong> No substantial new reading; review MLA and course outcomes as needed.</p>
-<p><strong>In class:</strong> Reserve most class time for conferences, finishing revisions, and a short reflection. Ask students to name a writing move they now use deliberately, show an example from their work, and describe how their thinking changed. Close the conversation without introducing another unit.</p>
-<p><strong>Writing / next step:</strong> Essay 3 final draft and course reflection due Dec 15 (submission time set by instructor).</p>
-<h1 id="adaptable-major-writing-assignments">Adaptable major writing assignments</h1>
-<h2 id="essay-1-how-a-writer-challenges-assumptions-about-education">Essay 1 · How a writer challenges assumptions about education</h2>
-<p><strong>Working prompt:</strong> Choose Gerald Graff’s “Hidden Intellectualism” or Mike Rose’s “Community College: The Great Equalizer?” Both writers invite readers to reconsider ideas about learning and educational opportunity. Write an essay that analyzes how your chosen author builds that argument for a particular audience. What widely held view does the writer respond to? How do examples, contrasts, reasoning, language, or other choices help make the case? Develop a specific claim about how the argument works, supporting it with close analysis of passages rather than a sequence of summaries or a personal agree/disagree response.</p>
-<p><strong>Support in the calendar:</strong> Read and annotate Graff/Rose → identify an assumption and audience → choose two or three significant passages → draft an analytical claim → workshop the draft → revise and submit (Nov 12).</p>
-<h2 id="essay-2-what-should-college-provide">Essay 2 · What should college provide?</h2>
-<p><strong>Working prompt:</strong> Rose and Clark raise questions about what it means for a community college to provide genuine opportunity; Graff, Lenga, and Burwell add perspectives on intellectual life, access, and support. Using at least three assigned readings, develop your own answer to a focused question such as: Is access to college enough, or what else helps students thrive? Which responsibilities should colleges prioritize? Put authors into conversation around shared issues and meaningful disagreements. Explain what your argument adds rather than reporting each reading separately.</p>
-<p><strong>Support in the calendar:</strong> Connect at least three authors → frame one debatable question → develop a thesis → consider an objection or complication → synthesize evidence in paragraphs → peer review → revise and submit (Nov 24).</p>
-<h2 id="essay-3-researching-a-question-about-educational-opportunity">Essay 3 · Researching a question about educational opportunity</h2>
-<p><strong>Working prompt:</strong> Lehman and Opoku-Agyeman/Addo offer contrasting arguments about student debt and who benefits from public policy. Use their disagreement—or another issue raised by our course readings—as the starting point for a focused research question about higher education. You might investigate student-loan policy, textbook costs, transfer pathways, academic advising, disability access, childcare, or support for working students. Develop a thesis-driven argument that draws on at least one relevant course reading and credible outside research. Present the problem fairly, consider a thoughtful competing perspective, and explain what your evidence leads you to conclude. The instructor may approve another focused topic.</p>
-<p><strong>Support in the calendar:</strong> Question growing from a reading → preliminary source search → evidence and source log → working claim → partial draft → complete draft → peer review → substantial revision → final submission (Dec 15).</p>
+<h1>Fourteen-meeting teaching calendar example</h1>
+<p>Each meeting includes suggested preparation, class work, and a writing move. Instructors can substitute activities or readings. The dates follow the Monday/Wednesday section; the final essay and reflection may be submitted in Blackboard on Tuesday, December 15, after the last class meeting.</p>
+<h2>Week 1 · Course launch and analysis</h2>
+<h3 class="meeting">01  |  Mon, Oct 26  —  Entering a conversation</h3>
+<p><strong>Prepare: </strong>Introduction (assigned after class); short instructor-selected excerpt or question about the purpose of college.</p>
+<p><strong>In class: </strong>Orient students to course and Blackboard. Begin with a low-pressure written response: what counts as learning, and where does it happen? Model how a writer starts with a shared belief and responds to it. Let students test one “they say / I say” pair in groups.</p>
+<p><strong>Writing / next step: </strong>Checkmark 1: introductory writing / response; collect during class to document early engagement.</p>
+<h3 class="meeting">02  |  Wed, Oct 28  —  Reading like a writer</h3>
+<p><strong>Prepare: </strong>Ch. 1; Graff, “Hidden Intellectualism” (606–613); selected Ch. 14 guidance.</p>
+<p><strong>In class: </strong>Practice annotation, distinguish Graff’s central claim from his examples, and identify an assumption he challenges. Discuss the audience he addresses and how he tries to persuade that audience. Introduce Essay 1: analysis of an argument in “Hidden Intellectualism” or Rose’s essay.</p>
+<p><strong>Writing / next step: </strong>Mark one passage where Graff challenges a common belief about intellectual ability. After reading Rose, choose which essay to analyze.</p>
+<h3 class="meeting">03  |  Mon, Nov 2  —  From noticing to a working thesis</h3>
+<p><strong>Prepare: </strong>Ch. 2; Rose, “Community College: The Great Equalizer?” (589–598).</p>
+<p><strong>In class: </strong>Compare how Graff and Rose frame intellectual ability and educational opportunity. Practice accurate summary, then ask how each writer uses examples, contrasts, or assumptions to make an argument. Students choose Graff or Rose for Essay 1 and test two analytical thesis statements.</p>
+<p><strong>Writing / next step: </strong>Checkmark 2: Essay 1 planning notes (chosen essay, author’s argument, intended audience, two passages worth analyzing, working thesis).</p>
+<h2>Week 2 · Drafting and evidence</h2>
+<h3 class="meeting">04  |  Wed, Nov 4  —  Developing analytical paragraphs</h3>
+<p><strong>Prepare: </strong>Ch. 3; reread the passages selected from Graff or Rose.</p>
+<p><strong>In class: </strong>Practice introducing and explaining quotations. Model the difference between stating what a writer argues and analyzing how the writer makes the case. Have students develop a body paragraph about a specific rhetorical choice or use of evidence. Run an Essay 1 draft workshop and focused peer review.</p>
+<p><strong>Writing / next step: </strong>Checkmark 3: two passages from Graff or Rose with notes explaining what each passage does in the author’s argument. Essay 1 rough draft for review.</p>
+<h2>Week 3 · Essay 1 final; synthesis begins</h2>
+<h3 class="meeting">05  |  Mon, Nov 9  —  Revision and first synthesis moves</h3>
+<p><strong>Prepare: </strong>Ch. 4; Clark, “Why We Need to Keep the ‘Community’ in Community Colleges” (599–605).</p>
+<p><strong>In class: </strong>Begin with an Essay 1 revision clinic (thesis, passages, explanation). Compare Clark’s emphasis on “community” with Rose’s account of opportunity and Graff’s view of intellectual life. Ask how a writer can extend or complicate an earlier claim. Introduce Essay 2: What should a college provide to make opportunity meaningful?</p>
+<p><strong>Writing / next step: </strong>Finish Essay 1 revisions; bring a question connecting two authors.</p>
+<h3 class="meeting">06  |  Wed, Nov 11  —  Whose perspectives are missing?</h3>
+<p><strong>Prepare: </strong>Ch. 5; Lenga, “Disability in Higher Education” (566–577).</p>
+<p><strong>In class: </strong>Collect Essay 1 final. Discuss educational access and institutional assumptions without requiring personal disclosure. Connect Lenga to Clark, Rose, or Graff: what might each author say the others overlook? Develop an “I say” that responds to a real point of tension in two sources. Veterans Day: classes are held.</p>
+<p><strong>Writing / next step: </strong>Essay 1 final draft. Start Essay 2 source-conversation notes.</p>
+<h2>Week 4 · Synthesis and argument</h2>
+<h3 class="meeting">07  |  Mon, Nov 16  —  An argument with a reasonable complication</h3>
+<p><strong>Prepare: </strong>Ch. 6 and Ch. 8; Burwell, “Generation Stress” (578–588).</p>
+<p><strong>In class: </strong>Use Burwell alongside Rose, Clark, and Lenga to consider what colleges should provide beyond admission or classes. Group readings by shared issues (access, belonging, support, intellectual growth). Workshop an arguable Essay 2 thesis, a reasonable objection, and an explanation of why the question matters.</p>
+<p><strong>Writing / next step: </strong>Checkmark 4: source-conversation chart, working claim, and one complication.</p>
+<h3 class="meeting">08  |  Wed, Nov 18  —  Synthesis workshop</h3>
+<p><strong>Prepare: </strong>Ch. 9 (selected); revisit Ch. 3 as needed.</p>
+<p><strong>In class: </strong>Model a synthesis paragraph combining evidence from two writers. Compare author-by-author and idea-based outlines. Hold peer review focused on thesis, source relationships, paragraph development, and what readers still need explained. End with time for a revision plan.</p>
+<p><strong>Writing / next step: </strong>Essay 2 rough draft and peer review; revise for Monday, Nov 23.</p>
+<h2>Week 5 · Essay 2 final; research begins</h2>
+<h3 class="meeting">09  |  Mon, Nov 23  —  Finish the conversation; begin an inquiry</h3>
+<p><strong>Prepare: </strong>Ch. 15 (opening sections); Lehman, “The Student Loan Trap” (614–624).</p>
+<p><strong>In class: </strong>Collect Essay 2 final. Introduce Essay 3: a research-supported argument about a focused question arising from the course conversation about education and opportunity. Use Lehman’s discussion of student debt to demonstrate the move from a published argument to a researchable question. Begin a library or database search demonstration.</p>
+<p><strong>Writing / next step: </strong>Essay 2 final draft due Monday, Nov 23. Identify a possible research issue or question and the course reading that sparked it. No class Wednesday, Nov 25 (Thanksgiving recess).</p>
+<h2>Week 6 · Inquiry and evidence</h2>
+<h3 class="meeting">10  |  Mon, Nov 30  —  What counts as useful research?</h3>
+<p><strong>Prepare: </strong>Opoku-Agyeman and Addo, “Student Loan Forgiveness Critics Are Wrong…” (625–632); Ch. 15.</p>
+<p><strong>In class: </strong>Compare how Lehman and Opoku-Agyeman/Addo frame student debt and support their positions. Practice evaluating claims, counterarguments, and evidence. Use library sources to investigate a narrower related question. Students may choose other education-related issues, or another approved topic if it supports the course outcomes.</p>
+<p><strong>Writing / next step: </strong>Checkmark 5: focused question, a relevant course reading, and an initial log of two possible outside sources with notes on their usefulness.</p>
+<h3 class="meeting">11  |  Wed, Dec 2  —  Gathering evidence and building the draft</h3>
+<p><strong>Prepare: </strong>Ch. 3 and Ch. 15 (review); student-selected sources.</p>
+<p><strong>In class: </strong>Workshop course readings, outside research, and relevant evidence together. Practice signal phrases, quotation, paraphrase, and MLA citation. Test a tentative answer to the research question and develop at least two body paragraphs. Use brief conferences to discuss argument, scope, or source gaps.</p>
+<p><strong>Writing / next step: </strong>Checkmark 6: evidence log with four to six quotations, paraphrases, facts, or examples from course and outside sources, noting how each supports or complicates the argument. Essay 3 partial draft.</p>
+<h2>Week 7 · Essay 3 draft, revision, reflection</h2>
+<h3 class="meeting">12  |  Mon, Dec 7  —  From partial draft to full argument</h3>
+<p><strong>Prepare: </strong>Ch. 12 (revision); no heavy new anthology reading.</p>
+<p><strong>In class: </strong>Run a full-draft workshop: reverse outline, mark unsupported claims, and ask whether the course readings and outside research genuinely speak to one another. Peer exchange should surface questions a thoughtful reader might raise. Confer with writers whose claim or scope is still unsettled.</p>
+<p><strong>Writing / next step: </strong>Essay 3 complete rough draft.</p>
+<h3 class="meeting">13  |  Wed, Dec 9  —  Revision with readers in mind</h3>
+<p><strong>Prepare: </strong>Ch. 12 (review); draft and rubric.</p>
+<p><strong>In class: </strong>Hold the major peer-review workshop. Prioritize thesis, idea-based organization, integration of assigned and outside sources, and explanation of evidence before sentence editing. Students write a short plan naming two or three changes and begin making them.</p>
+<p><strong>Writing / next step: </strong>Peer review and revision plan (not a new major assignment).</p>
+<h3 class="meeting">14  |  Mon, Dec 14  —  Completing and reflecting</h3>
+<p><strong>Prepare: </strong>No substantial new reading; review MLA and course outcomes as needed.</p>
+<p><strong>In class: </strong>Reserve most class time for conferences, finishing revisions, and a short reflection. Ask students to name a writing move they now use deliberately, show an example from their work, and describe how their thinking changed. Close the conversation without introducing another unit.</p>
+<p><strong>Writing / next step: </strong>Essay 3 final draft and course reflection due Tuesday, Dec 15 via Blackboard (submission time set by instructor); final in-person class is Monday, Dec 14.</p>
+<h1>Adaptable major writing assignments</h1>
+<h2>Essay 1 · How a writer challenges assumptions about education</h2>
+<p><strong>Working prompt: </strong>Choose Gerald Graff’s “Hidden Intellectualism” or Mike Rose’s “Community College: The Great Equalizer?” Both writers invite readers to reconsider ideas about learning and educational opportunity. Write an essay that analyzes how your chosen author builds that argument for a particular audience. What widely held view does the writer respond to? How do examples, contrasts, reasoning, language, or other choices help make the case? Develop a specific claim about how the argument works, supporting it with close analysis of passages rather than a sequence of summaries or a personal agree/disagree response.</p>
+<p><strong>Support in the calendar: </strong>Read and annotate Graff/Rose → identify an assumption and audience → choose two or three significant passages → draft an analytical claim → workshop the draft → revise and submit (Nov 11).</p>
+<h2>Essay 2 · What should college provide?</h2>
+<p><strong>Working prompt: </strong>Rose and Clark raise questions about what it means for a community college to provide genuine opportunity; Graff, Lenga, and Burwell add perspectives on intellectual life, access, and support. Using at least three assigned readings, develop your own answer to a focused question such as: Is access to college enough, or what else helps students thrive? Which responsibilities should colleges prioritize? Put authors into conversation around shared issues and meaningful disagreements. Explain what your argument adds rather than reporting each reading separately.</p>
+<p><strong>Support in the calendar: </strong>Connect at least three authors → frame one debatable question → develop a thesis → consider an objection or complication → synthesize evidence in paragraphs → peer review → revise and submit (Nov 23).</p>
+<h2>Essay 3 · Researching a question about educational opportunity</h2>
+<p><strong>Working prompt: </strong>Lehman and Opoku-Agyeman/Addo offer contrasting arguments about student debt and who benefits from public policy. Use their disagreement—or another issue raised by our course readings—as the starting point for a focused research question about higher education. You might investigate student-loan policy, textbook costs, transfer pathways, academic advising, disability access, childcare, or support for working students. Develop a thesis-driven argument that draws on at least one relevant course reading and credible outside research. Present the problem fairly, consider a thoughtful competing perspective, and explain what your evidence leads you to conclude. The instructor may approve another focused topic.</p>
+<p><strong>Support in the calendar: </strong>Question growing from a reading → preliminary source search → evidence and source log → working claim → partial draft → complete draft → peer review → substantial revision → final submission (Dec 15).</p>
 <p>Instructor note: These are usable examples, not required departmental prompts. Before distributing them, decide the scope, length, source minimum, grading criteria, and submission rules. For Essay 3, a practical starting point is at least one course reading and two credible outside sources, with a brief explanation of how sources will be assessed. Give students room to develop a question they care about, while keeping the assignment’s focus on inquiry, evidence, and argument.</p>
-<h1 id="checkmarks-six-sample-low-stakes-tasks">Checkmarks: six sample low-stakes tasks</h1>
+<h1>Checkmarks: six sample low-stakes tasks</h1>
 <table>
-<colgroup>
-<col style="width: 17%"/>
-<col style="width: 82%"/>
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Checkmark/date</strong></th>
-<th><strong>Sample task</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>1 · Oct 22</strong></td>
-<td>What does “college learning” look like? Write a short response, then identify a view someone else might hold. In class.</td>
-</tr>
-<tr class="even">
-<td><strong>2 · Oct 29</strong></td>
-<td>Essay 1 planning notes: choose Graff or Rose, identify the central argument, select two passages, and test a thesis. Class or homework.</td>
-</tr>
-<tr class="odd">
-<td><strong>3 · Nov 5</strong></td>
-<td>Close-reading evidence: explain how two specific passages advance Graff’s or Rose’s argument. In class, alone or in pairs.</td>
-</tr>
-<tr class="even">
-<td><strong>4 · Nov 17</strong></td>
-<td>Source-conversation chart: connect three course authors, identify a tension, and draft a response for Essay 2. Homework or group activity.</td>
-</tr>
-<tr class="odd">
-<td><strong>5 · Dec 1</strong></td>
-<td>Inquiry note: a focused question emerging from one course reading, two candidate outside sources, and how each might help. In class.</td>
-</tr>
-<tr class="even">
-<td><strong>6 · Dec 3</strong></td>
-<td>Evidence log: four to six relevant quotations, paraphrases, facts, or examples from readings and research; note how each might be used. Homework or workshop.</td>
-</tr>
-</tbody>
+<tr><th>Checkmark/date</th><th>Sample task</th></tr>
+<tr><td>1 · Oct 26</td><td>What does “college learning” look like? Write a short response, then identify a view someone else might hold. In class.</td></tr>
+<tr><td>2 · Nov 2</td><td>Essay 1 planning notes: choose Graff or Rose, identify the central argument, select two passages, and test a thesis. Class or homework.</td></tr>
+<tr><td>3 · Nov 4</td><td>Close-reading evidence: explain how two specific passages advance Graff’s or Rose’s argument. In class, alone or in pairs.</td></tr>
+<tr><td>4 · Nov 16</td><td>Source-conversation chart: connect three course authors, identify a tension, and draft a response for Essay 2. Homework or group activity.</td></tr>
+<tr><td>5 · Nov 30</td><td>Inquiry note: a focused question emerging from one course reading, two candidate outside sources, and how each might help. In class.</td></tr>
+<tr><td>6 · Dec 2</td><td>Evidence log: four to six relevant quotations, paraphrases, facts, or examples from readings and research; note how each might be used. Homework or workshop.</td></tr>
 </table>
 <p>Keep the grading light. Depending on the instructor’s approach, a Checkmark can be completion-based, discussed and returned, or simply used during class. It is not necessary to write extensive individual feedback on every short activity.</p>
-<h2 id="a-workable-150-minute-class-rhythm">A workable 150-minute class rhythm</h2>
+<h2>A workable 150-minute class rhythm</h2>
 <p>15 minutes: opening writing and review; 35 minutes: close reading and discussion; 25 minutes: short writing lesson and practice; 10-minute break; 50 minutes: collaborative work, drafting, peer review, or conferences; 15 minutes: reflection and next steps. This is an example, not a fixed schedule. Workshop days can devote most of the meeting to writing and conferencing.</p>
-<h2 id="what-can-changeand-what-to-keep">What can change—and what to keep</h2>
+<h2>What can change—and what to keep</h2>
 <p>The instructor can change the theme, choose different anthology readings, substitute media, rename Checkmarks, reorder individual writing lessons, or revise the sample prompts. The key through-line is repeated practice with meaningful texts: understand a claim, analyze how it is made, connect writers’ perspectives, investigate a question, and revise work with readers in mind.</p>
-<h2 id="practical-notes-before-the-first-meeting">Practical notes before the first meeting</h2>
+<h2>Practical notes before the first meeting</h2>
 <ul>
-<li><p>Confirm the section’s actual meeting days and times; this sample assumes Tuesdays and Thursdays. The 7B calendar includes no class on Nov 3 and Nov 26.</p></li>
-<li><p>Post Week 1 materials and a small academic-engagement task immediately. The student engagement deadline is October 30; faculty reporting is due November 4.</p></li>
-<li><p>Provide essay prompts before students need them; use Blackboard areas that students can find quickly (Start Here, Weekly Modules, Readings, Essay Projects, Grades).</p></li>
-<li><p>Share how to contact you, where to get tutoring and library help, and what feedback students can expect on drafts.</p></li>
-<li><p>Consult current campus and CT State guidance for syllabus content, attendance/engagement, grading, academic integrity, and classroom accessibility. This packet is an informal teaching resource, not an official policy document.</p></li>
-</ul>
-</body>
-</html>
+<li>The section meets Mondays and Wednesdays, beginning October 26. There is no class on Wednesday, November 25 (Thanksgiving recess). Veterans Day, Wednesday, November 11, is a regular class day. The last scheduled meeting is Monday, December 14; the official 7B session ends Tuesday, December 15.</li>
+<li>Post Week 1 materials and a small academic-engagement task for the first meeting, Monday, October 26. The student engagement deadline is October 30; faculty reporting is due November 4.</li>
+<li>Provide essay prompts before students need them; use Blackboard areas that students can find quickly (Start Here, Weekly Modules, Readings, Essay Projects, Grades).</li>
+<li>Share how to contact you, where to get tutoring and library help, and what feedback students can expect on drafts.</li>
+<li>Consult current campus and CT State guidance for syllabus content, attendance/engagement, grading, academic integrity, and classroom accessibility. This packet is an informal teaching resource, not an official policy document.</li>
+</ul></body></html>
